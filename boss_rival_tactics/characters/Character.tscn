@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ccncik8uh1a2r"]
+
+[ext_resource type="Script" path="res://characters/Character.gd" id="1_mligb"]
+[ext_resource type="Script" path="res://characters/AbstractStateMachine.gd" id="2_kge8e"]
+
+[node name="Character" type="CharacterBody2D"]
+script = ExtResource("1_mligb")
+
+[node name="AbstractStateMachine" type="Node" parent="."]
+script = ExtResource("2_kge8e")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
