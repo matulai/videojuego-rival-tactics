@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxqchi54ki4jq"]
+
+[ext_resource type="PackedScene" uid="uid://ccncik8uh1a2r" path="res://characters/Character.tscn" id="1_3msm3"]
+[ext_resource type="Script" path="res://characters/TroopUnit.gd" id="2_ep0cq"]
+
+[node name="TroopUnit" instance=ExtResource("1_3msm3")]
+script = ExtResource("2_ep0cq")
+
+[node name="Area2D" type="Area2D" parent="." index="3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." index="4"]
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.109804, 0.027451, 1)
+
+[node name="PathTimer" type="Timer" parent="." index="5"]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
