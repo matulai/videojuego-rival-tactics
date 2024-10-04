@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3dn20yxty3tt"]
+
+[ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_5r2b2"]
+[ext_resource type="Script" path="res://characters/soldier/states/ChaseState.gd" id="3_vqhm4"]
+[ext_resource type="Script" path="res://characters/soldier/states/AttackState.gd" id="4_yn0kd"]
+[ext_resource type="Texture2D" uid="uid://c3e6xr6qikg7p" path="res://assets/sprites/icon.svg" id="5_owdn3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0ymg"]
+radius = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7d281"]
+radius = 61.0
+
+[node name="Soldier" instance=ExtResource("1_5r2b2")]
+
+[node name="AbstractStateMachine" parent="." index="0"]
+character_path = NodePath("..")
+START_STATE = NodePath("Chase")
+STATES_LIST = Array[NodePath]([NodePath("Chase"), NodePath("Attack")])
+
+[node name="Chase" type="Node" parent="AbstractStateMachine" index="0"]
+script = ExtResource("3_vqhm4")
+state_id = "chase"
+
+[node name="Attack" type="Node" parent="AbstractStateMachine" index="1"]
+script = ExtResource("4_yn0kd")
+state_id = "attack"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("5_owdn3")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("CircleShape2D_x0ymg")
+
+[node name="PathTimer" parent="." index="5"]
+wait_time = 0.33
+
+[node name="CollisionShape2D" parent="." index="6"]
+shape = SubResource("CircleShape2D_7d281")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_body_exited"]
