@@ -4,11 +4,16 @@
 [ext_resource type="Script" path="res://characters/AbstractStateMachine.gd" id="2_kge8e"]
 
 [node name="Character" type="CharacterBody2D"]
+safe_margin = 5.0
 script = ExtResource("1_mligb")
 
 [node name="AbstractStateMachine" type="Node" parent="."]
 script = ExtResource("2_kge8e")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="AbstractStateMachine" method="_on_animation_finished"]
