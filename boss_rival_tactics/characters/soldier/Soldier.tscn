@@ -1,48 +1,67 @@
-[gd_scene load_steps=8 format=3 uid="uid://bvu4ap2juwv6h"]
+[gd_scene load_steps=9 format=3 uid="uid://d3dn20yxty3tt"]
 
-[ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_80kwf"]
-[ext_resource type="Script" path="res://characters/soldier/states/WalkState.gd" id="2_shis1"]
-[ext_resource type="Texture2D" uid="uid://c3e6xr6qikg7p" path="res://assets/sprites/icon.svg" id="2_yg3fr"]
-[ext_resource type="Script" path="res://characters/soldier/states/AttackState.gd" id="3_ms0nf"]
+[ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_5r2b2"]
+[ext_resource type="Script" path="res://characters/soldier/states/IdleState.gd" id="3_5ltk0"]
+[ext_resource type="Script" path="res://characters/soldier/states/ChaseState.gd" id="3_vqhm4"]
+[ext_resource type="Texture2D" uid="uid://c3e6xr6qikg7p" path="res://assets/sprites/icon.svg" id="5_owdn3"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_v8ovh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_yg3fr")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
+[sub_resource type="Animation" id="Animation_do7kp"]
+length = 0.001
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lde5l"]
-size = Vector2(120, 122)
+[sub_resource type="Animation" id="Animation_gydte"]
+resource_name = "attack_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.5708, 3.14159, 4.71239, 0.0]
+}
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qr2hb"]
-radius = 98.6154
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s18v7"]
+_data = {
+"RESET": SubResource("Animation_do7kp"),
+"attack_animation": SubResource("Animation_gydte")
+}
 
-[node name="Soldier" instance=ExtResource("1_80kwf")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8muh"]
+radius = 61.0
+
+[node name="Soldier" instance=ExtResource("1_5r2b2")]
+speed = 100
 
 [node name="AbstractStateMachine" parent="." index="0"]
 character_path = NodePath("..")
 START_STATE = NodePath("Chase")
-STATES_LIST = Array[NodePath]([NodePath("Attack"), NodePath("Chase")])
+STATES_LIST = Array[NodePath]([NodePath("Chase"), NodePath("Idle")])
 
 [node name="Chase" type="Node" parent="AbstractStateMachine" index="0"]
-script = ExtResource("2_shis1")
+script = ExtResource("3_vqhm4")
 state_id = "chase"
 
-[node name="Attack" type="Node" parent="AbstractStateMachine" index="1"]
-script = ExtResource("3_ms0nf")
-state_id = "attack"
+[node name="Idle" type="Node" parent="AbstractStateMachine" index="1"]
+script = ExtResource("3_5ltk0")
+state_id = "idle"
 
-[node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_v8ovh")
-animation = &"idle"
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("5_owdn3")
 
-[node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("RectangleShape2D_lde5l")
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_s18v7")
+}
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-shape = SubResource("CircleShape2D_qr2hb")
+[node name="NavigationAgent2D" parent="." index="3"]
+path_desired_distance = 48.0
+target_desired_distance = 140.0
+
+[node name="PathTimer" parent="." index="4"]
+wait_time = 0.33
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_b8muh")

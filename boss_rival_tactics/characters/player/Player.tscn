@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://6bv8d0kcugq6"]
+[gd_scene load_steps=8 format=3 uid="uid://6bv8d0kcugq6"]
 
 [ext_resource type="PackedScene" uid="uid://ccncik8uh1a2r" path="res://characters/Character.tscn" id="1_j1huk"]
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="2_dtn6i"]
@@ -7,19 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://ddonrslxbn1s3" path="res://assets/sprites/player.png" id="3_wqmio"]
 [ext_resource type="Script" path="res://characters/player/states/WalkState.gd" id="4_ugem5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_feu4c"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_wqmio")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbvcl"]
-size = Vector2(64, 64)
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hgfe"]
+radius = 32.0
 
 [node name="Player" instance=ExtResource("1_j1huk")]
 script = ExtResource("2_dtn6i")
@@ -38,11 +27,8 @@ state_id = "idle"
 script = ExtResource("4_ugem5")
 state_id = "walk"
 
-[node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_feu4c")
-animation = &"idle"
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_wqmio")
 
-[node name="Camera2D" type="Camera2D" parent="AnimatedSprite2D" index="0"]
-
-[node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("RectangleShape2D_kbvcl")
+[node name="CollisionShape2D" parent="." index="3"]
+shape = SubResource("CircleShape2D_4hgfe")
