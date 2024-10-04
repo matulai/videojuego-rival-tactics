@@ -181,7 +181,7 @@ position = Vector2(338, 536)
 isTeamOne = true
 
 [node name="Soldier3" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
-position = Vector2(358, 810)
+position = Vector2(366, 748)
 isTeamOne = true
 
 [node name="Soldier4" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
@@ -194,6 +194,62 @@ isTeamOne = true
 
 [node name="Soldier6" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
 position = Vector2(114, 750)
+isTeamOne = true
+
+[node name="Soldier7" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(82, 934)
+isTeamOne = true
+
+[node name="Soldier8" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(631, 1089)
+isTeamOne = true
+
+[node name="Soldier9" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(622, 696)
+isTeamOne = true
+
+[node name="Soldier10" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(257, 928)
+isTeamOne = true
+
+[node name="Soldier11" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(92, 310)
+isTeamOne = true
+
+[node name="Soldier12" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(342, 316)
+isTeamOne = true
+
+[node name="Soldier13" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(464, 158)
+isTeamOne = true
+
+[node name="Soldier14" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(746, 145)
+isTeamOne = true
+
+[node name="Soldier15" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(775, 507)
+isTeamOne = true
+
+[node name="Soldier16" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(645, 880)
+isTeamOne = true
+
+[node name="Soldier17" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(563, 513)
+isTeamOne = true
+
+[node name="Soldier18" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(639, 312)
+isTeamOne = true
+
+[node name="Soldier19" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(444, 928)
+isTeamOne = true
+
+[node name="Soldier20" parent="PlayerOneArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(116, 119)
 isTeamOne = true
 
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
@@ -215,3 +271,45 @@ position = Vector2(1754, 694)
 
 [node name="Soldier6" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
 position = Vector2(1752, 334)
+
+[node name="Soldier7" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1889, 294)
+
+[node name="Soldier8" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1224, 863)
+
+[node name="Soldier9" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1303, 597)
+
+[node name="Soldier10" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1253, 362)
+
+[node name="Soldier11" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1267, 127)
+
+[node name="Soldier12" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1564, 727)
+
+[node name="Soldier13" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1739, 914)
+
+[node name="Soldier14" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1940, 1070)
+
+[node name="Soldier15" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1956, 721)
+
+[node name="Soldier16" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1504, 903)
+
+[node name="Soldier17" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1508, 469)
+
+[node name="Soldier18" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1694, 110)
+
+[node name="Soldier19" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1493, 195)
+
+[node name="Soldier20" parent="PlayerTwoArmyNode" instance=ExtResource("3_btwvw")]
+position = Vector2(1784, 521)
