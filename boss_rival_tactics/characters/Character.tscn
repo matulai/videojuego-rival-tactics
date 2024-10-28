@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://characters/AbstractStateMachine.gd" id="2_kge8e"]
 
 [node name="Character" type="CharacterBody2D"]
+collision_mask = 3
 safe_margin = 5.0
 script = ExtResource("1_mligb")
 
