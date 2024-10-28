@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bs2lywj3j76gw"]
+
+[ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_kokge"]
+[ext_resource type="Texture2D" uid="uid://ddonrslxbn1s3" path="res://assets/sprites/player.png" id="2_0fsfe"]
+[ext_resource type="Script" path="res://characters/archer/Archer.gd" id="2_roswg"]
+[ext_resource type="Script" path="res://characters/archer/states/AttackState.gd" id="2_sug25"]
+[ext_resource type="Script" path="res://characters/archer/states/ChaseState.gd" id="3_2fcnj"]
+[ext_resource type="Script" path="res://characters/archer/states/IdleState.gd" id="4_phqpc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ml0b"]
+radius = 31.4006
+
+[node name="Archer" instance=ExtResource("1_kokge")]
+collision_mask = 1
+script = ExtResource("2_roswg")
+projectile_scene = null
+speed = 150
+
+[node name="AbstractStateMachine" parent="." index="0"]
+character_path = NodePath("..")
+START_STATE = NodePath("Chase")
+STATES_LIST = Array[NodePath]([NodePath("Attack"), NodePath("Chase"), NodePath("Idle")])
+
+[node name="Attack" type="Node" parent="AbstractStateMachine" index="0"]
+script = ExtResource("2_sug25")
+state_id = "attack"
+
+[node name="AttackCoolDown" type="Timer" parent="AbstractStateMachine/Attack" index="0"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Chase" type="Node" parent="AbstractStateMachine" index="1"]
+script = ExtResource("3_2fcnj")
+state_id = "chase"
+
+[node name="Idle" type="Node" parent="AbstractStateMachine" index="2"]
+script = ExtResource("4_phqpc")
+state_id = "idle"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_0fsfe")
+
+[node name="NavigationAgent2D" parent="." index="3"]
+path_desired_distance = 48.0
+target_desired_distance = 500.0
+
+[node name="PathTimer" parent="." index="4"]
+wait_time = 0.33
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_7ml0b")
+
+[node name="ArrowSpawn" type="Marker2D" parent="." index="6"]
+position = Vector2(43, 0)
+
+[connection signal="timeout" from="AbstractStateMachine/Attack/AttackCoolDown" to="AbstractStateMachine/Attack" method="_on_attack_cool_down_timeout"]
