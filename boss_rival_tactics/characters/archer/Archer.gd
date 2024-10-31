@@ -1,6 +1,7 @@
 extends TroopUnit
 
-@onready var arrow_spawn: Marker2D = $ArrowSpawn
+@onready var arrow_spawn: Marker2D = $Node2D/ArrowSpawn
+@onready var arrow_spawn_node: Node2D = $Node2D
 
 @export var projectile_scene: PackedScene
 
@@ -16,7 +17,7 @@ func fire() -> void:
 		700.0, 
 		damage,
 		angle_to_target,
-		collision_mask
+		isTeamOne
 	)
 
 	get_tree().current_scene.add_child(projectile_instance)

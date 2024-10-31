@@ -1,19 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://bs2lywj3j76gw"]
+[gd_scene load_steps=9 format=3 uid="uid://bs2lywj3j76gw"]
 
 [ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_kokge"]
 [ext_resource type="Texture2D" uid="uid://ddonrslxbn1s3" path="res://assets/sprites/player.png" id="2_0fsfe"]
 [ext_resource type="Script" path="res://characters/archer/Archer.gd" id="2_roswg"]
 [ext_resource type="Script" path="res://characters/archer/states/AttackState.gd" id="2_sug25"]
 [ext_resource type="Script" path="res://characters/archer/states/ChaseState.gd" id="3_2fcnj"]
+[ext_resource type="PackedScene" uid="uid://chkoi4g0d2gkg" path="res://weapons/arrow/Arrow.tscn" id="3_keocn"]
 [ext_resource type="Script" path="res://characters/archer/states/IdleState.gd" id="4_phqpc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ml0b"]
-radius = 31.4006
+radius = 16.0312
 
 [node name="Archer" instance=ExtResource("1_kokge")]
-collision_mask = 1
 script = ExtResource("2_roswg")
-projectile_scene = null
+projectile_scene = ExtResource("3_keocn")
 speed = 150
 
 [node name="AbstractStateMachine" parent="." index="0"]
@@ -26,7 +26,7 @@ script = ExtResource("2_sug25")
 state_id = "attack"
 
 [node name="AttackCoolDown" type="Timer" parent="AbstractStateMachine/Attack" index="0"]
-wait_time = 3.0
+wait_time = 2.5
 one_shot = true
 
 [node name="Chase" type="Node" parent="AbstractStateMachine" index="1"]
@@ -38,6 +38,7 @@ script = ExtResource("4_phqpc")
 state_id = "idle"
 
 [node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_0fsfe")
 
 [node name="NavigationAgent2D" parent="." index="3"]
@@ -50,7 +51,9 @@ wait_time = 0.33
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CircleShape2D_7ml0b")
 
-[node name="ArrowSpawn" type="Marker2D" parent="." index="6"]
-position = Vector2(43, 0)
+[node name="Node2D" type="Node2D" parent="." index="6"]
+
+[node name="ArrowSpawn" type="Marker2D" parent="Node2D" index="0"]
+position = Vector2(20, 0)
 
 [connection signal="timeout" from="AbstractStateMachine/Attack/AttackCoolDown" to="AbstractStateMachine/Attack" method="_on_attack_cool_down_timeout"]
