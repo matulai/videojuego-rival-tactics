@@ -8,13 +8,14 @@ var direction: Vector2
 var damage: int
 var collision: int
 
-func initialize(initial_position: Vector2, dir: Vector2, speed: int, dam: int, angle: float, collision_mask: int) -> void:
+func initialize(initial_position: Vector2, dir: Vector2, speed: int, dam: int, angle: float, isTeamOne: bool) -> void:
 	position = initial_position
 	rotation += angle
 	damage = dam
 	direction = dir
 	VELOCITY = speed
-	collision = collision_mask
+#	Los del teamOne detectan colision con layer 2 y viceversa.
+	collision = 2 if isTeamOne else 1
 
 func _ready() -> void:
 	lifetime_timer.start()
