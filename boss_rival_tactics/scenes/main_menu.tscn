@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://digxcglpsj87c"]
+[gd_scene load_steps=7 format=3 uid="uid://digxcglpsj87c"]
 
 [ext_resource type="Script" path="res://scripts/MainMenuControl.gd" id="1_o6vmx"]
 [ext_resource type="FontVariation" uid="uid://c7vj672owbbn0" path="res://fonts/main_font.tres" id="2_7vj1m"]
@@ -18,6 +18,21 @@ corner_radius_bottom_left = 4
 shadow_color = Color(0, 0, 0, 0.784314)
 shadow_size = 1
 shadow_offset = Vector2(2.5, 2.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yrtbo"]
+bg_color = Color(0.737255, 0.658824, 0.580392, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 0.647059)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ec77d"]
+bg_color = Color(0.333333, 0.258824, 0.184314, 1)
 
 [node name="MainMenu" type="Node"]
 
@@ -83,6 +98,7 @@ action_mode = 0
 text = "QUIT"
 
 [node name="MenuUnitsSelection" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 8
@@ -97,30 +113,34 @@ offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="MenuUnitsSelection"]
+[node name="Panel" type="Panel" parent="MenuUnitsSelection"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25098)
+theme_override_styles/panel = SubResource("StyleBoxFlat_yrtbo")
 
-[node name="Label" type="Label" parent="MenuUnitsSelection"]
-offset_right = 40.0
-offset_bottom = 16.0
-
-[node name="Panel" type="Panel" parent="MenuUnitsSelection"]
+[node name="Panel" type="Panel" parent="MenuUnitsSelection/Panel"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -250.0
-offset_right = 250.0
+offset_left = -275.0
+offset_right = 275.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ec77d")
+
+[node name="Label" type="Label" parent="MenuUnitsSelection"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
 
 [node name="MainManuBackground" parent="." instance=ExtResource("3_c6lau")]
+player_one_scene = null
+player_two_scene = null
 
 [connection signal="pressed" from="MenuOptions/Buttons/StartButton" to="MenuOptions" method="_on_start_button_pressed"]
