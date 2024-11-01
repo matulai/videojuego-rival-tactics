@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://c70lvth7u7qt5"]
+
+[ext_resource type="PackedScene" uid="uid://bhg541i6s3k1o" path="res://scenes/Game.tscn" id="1_f4e6o"]
+[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="2_vbfmv"]
+
+[node name="MainManuBackground" instance=ExtResource("1_f4e6o")]
+
+[node name="Soldier" parent="PlayerOneArmyNode" index="2" instance=ExtResource("2_vbfmv")]
+position = Vector2(132, 509)
+isTeamOne = true
+
+[node name="Soldier2" parent="PlayerOneArmyNode" index="3" instance=ExtResource("2_vbfmv")]
+position = Vector2(372, 443)
+isTeamOne = true
+
+[node name="Soldier" parent="PlayerTwoArmyNode" index="2" instance=ExtResource("2_vbfmv")]
+position = Vector2(1342, 370)
+
+[node name="Soldier2" parent="PlayerTwoArmyNode" index="3" instance=ExtResource("2_vbfmv")]
+position = Vector2(1213, 600)
