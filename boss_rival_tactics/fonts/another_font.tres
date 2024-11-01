@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://ce4ftj0mdvp7y"]
+
+[ext_resource type="FontFile" uid="uid://n6qim4towukl" path="res://fonts/OldeTome.ttf" id="1_6032f"]
+
+[resource]
+base_font = ExtResource("1_6032f")
