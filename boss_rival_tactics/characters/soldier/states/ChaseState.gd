@@ -14,7 +14,7 @@ func update(delta: float) -> void:
 
 func _on_animation_finished(anim_name: String) -> void:
 #CUANDO SE AGREGEN MAS ANIMACIONES CAMBIAR ESTA IMPLEMENTACION
-	if character.navigation_agent.is_target_reached():
+	if is_instance_valid(character.target):
 		character.target.take_damage(
 			character.damage, 
 			character.knockback_direction, 

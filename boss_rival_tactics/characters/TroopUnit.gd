@@ -15,7 +15,8 @@ func chase() -> void:
 	move_direction = vector_to_next_point
 
 func _get_path_to_enemy() ->void:
-	navigation_agent.target_position = target.position
+	if is_instance_valid(target):
+		navigation_agent.target_position = target.position
 
 func get_closest_node(nodes: Array) -> Node:
 	var closest_node: Node = null
