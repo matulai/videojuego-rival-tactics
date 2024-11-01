@@ -28,15 +28,9 @@ extends Node
 @onready var player_one_spawn: Marker2D = $PlayersSpawner/PlayerOneSpawn
 @onready var player_two_spawn: Marker2D = $PlayersSpawner/PlayerTwoSpawn
 
-# Musica de fondo
-@onready var audio_stream_player: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
 var spawn_timer = 0.0
 
 func _ready() -> void:
-#	Pongo a reproducir la musica de fondo
-	audio_stream_player.play()
-	
 	# Obtener los enemigos (tropas) de cada bando
 	var player_one_enemies = player_two_army.get_children()
 	var player_two_enemies = player_one_army.get_children()
