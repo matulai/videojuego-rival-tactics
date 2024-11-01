@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://digxcglpsj87c"]
+
+[ext_resource type="Script" path="res://scripts/MainMenuControl.gd" id="1_o6vmx"]
+[ext_resource type="FontVariation" uid="uid://c7vj672owbbn0" path="res://fonts/main_font.tres" id="2_7vj1m"]
+[ext_resource type="PackedScene" uid="uid://c70lvth7u7qt5" path="res://scenes/MainMenuBackground.tscn" id="3_c6lau"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4hfy"]
+bg_color = Color(0.333333, 0.258824, 0.184314, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.00820203, 0.00820202, 0.00820201, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+shadow_color = Color(0, 0, 0, 0.784314)
+shadow_size = 1
+shadow_offset = Vector2(2.5, 2.5)
+
+[node name="MainMenu" type="Node"]
+
+[node name="MenuOptions" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o6vmx")
+
+[node name="Buttons" type="HBoxContainer" parent="MenuOptions"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 400.0
+offset_top = -200.0
+offset_right = -400.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="StartButton" type="Button" parent="MenuOptions/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_7vj1m")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4hfy")
+action_mode = 0
+text = "NEW GAME"
+
+[node name="OptionsButton" type="Button" parent="MenuOptions/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_7vj1m")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4hfy")
+action_mode = 0
+text = "OPTIONS"
+
+[node name="CreditsButton" type="Button" parent="MenuOptions/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_7vj1m")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4hfy")
+action_mode = 0
+text = "CREDITS"
+
+[node name="QuitButton" type="Button" parent="MenuOptions/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("2_7vj1m")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_m4hfy")
+action_mode = 0
+text = "QUIT"
+
+[node name="MenuUnitsSelection" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MenuUnitsSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25098)
+
+[node name="Label" type="Label" parent="MenuUnitsSelection"]
+offset_right = 40.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="MenuUnitsSelection"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -250.0
+offset_right = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainManuBackground" parent="." instance=ExtResource("3_c6lau")]
+
+[connection signal="pressed" from="MenuOptions/Buttons/StartButton" to="MenuOptions" method="_on_start_button_pressed"]
