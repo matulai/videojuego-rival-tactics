@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://digxcglpsj87c"]
+[gd_scene load_steps=8 format=3 uid="uid://digxcglpsj87c"]
 
 [ext_resource type="Script" path="res://scripts/MainMenuControl.gd" id="1_o6vmx"]
 [ext_resource type="FontVariation" uid="uid://c7vj672owbbn0" path="res://fonts/main_font.tres" id="2_7vj1m"]
 [ext_resource type="PackedScene" uid="uid://c70lvth7u7qt5" path="res://scenes/MainMenuBackground.tscn" id="3_c6lau"]
+[ext_resource type="AudioStream" uid="uid://cj0knwr58mqh7" path="res://music_sonds/glorious_morning.mp3" id="4_gxlrg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4hfy"]
 bg_color = Color(0.333333, 0.258824, 0.184314, 1)
@@ -142,5 +143,9 @@ offset_bottom = 16.0
 [node name="MainManuBackground" parent="." instance=ExtResource("3_c6lau")]
 player_one_scene = null
 player_two_scene = null
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_gxlrg")
+autoplay = true
 
 [connection signal="pressed" from="MenuOptions/Buttons/StartButton" to="MenuOptions" method="_on_start_button_pressed"]
