@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bhg541i6s3k1o"]
+[gd_scene load_steps=26 format=4 uid="uid://bhg541i6s3k1o"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bdud80ufe0f1y" path="res://assets/tilesets/overworld_tileset_grass.png" id="4_twpd1"]
 [ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="5_7eoaf"]
 [ext_resource type="Texture2D" uid="uid://dkne2x8q5jypc" path="res://assets/tilesets/BaseSet.png" id="5_h5syy"]
-[ext_resource type="AudioStream" uid="uid://cj0knwr58mqh7" path="res://music_sonds/glorious_morning.mp3" id="9_2ooek"]
 [ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="9_wpucm"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wdq22"]
@@ -1608,7 +1607,3 @@ position = Vector2(96, 432)
 
 [node name="PlayerTwoSpawn" type="Marker2D" parent="PlayersSpawner"]
 position = Vector2(1519, 423)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_2ooek")
-autoplay = true
