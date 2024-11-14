@@ -149,3 +149,4 @@ stream = ExtResource("4_gxlrg")
 autoplay = true
 
 [connection signal="pressed" from="MenuOptions/Buttons/StartButton" to="MenuOptions" method="_on_start_button_pressed"]
+[connection signal="pressed" from="MenuOptions/Buttons/QuitButton" to="MenuOptions" method="_on_quit_button_pressed"]

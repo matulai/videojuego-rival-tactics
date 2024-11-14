@@ -34,3 +34,7 @@ position = Vector2(1342, 370)
 
 [node name="Soldier2" parent="PlayerTwoArmyNode" index="3" instance=ExtResource("2_vbfmv")]
 position = Vector2(1213, 600)
+
+[node name="Control" parent="." index="8"]
+process_mode = 4
+visible = false
