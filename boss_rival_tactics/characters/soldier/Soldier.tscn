@@ -1,44 +1,170 @@
-[gd_scene load_steps=9 format=3 uid="uid://d3dn20yxty3tt"]
+[gd_scene load_steps=16 format=3 uid="uid://d3dn20yxty3tt"]
 
 [ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_5r2b2"]
 [ext_resource type="Script" path="res://characters/soldier/states/IdleState.gd" id="3_5ltk0"]
 [ext_resource type="Script" path="res://characters/soldier/states/ChaseState.gd" id="3_vqhm4"]
-[ext_resource type="Texture2D" uid="uid://c3e6xr6qikg7p" path="res://assets/sprites/icon.svg" id="5_owdn3"]
+[ext_resource type="Script" path="res://characters/soldier/states/AttackState.gd" id="4_4ielo"]
+[ext_resource type="Texture2D" uid="uid://c75iwyddly7cj" path="res://assets/sprites/guard_sword_master.png" id="4_vdo8t"]
+[ext_resource type="Script" path="res://characters/archer/states/HurtState.gd" id="5_525is"]
+[ext_resource type="Script" path="res://characters/archer/states/DeathState.gd" id="6_7ytrk"]
 
 [sub_resource type="Animation" id="Animation_do7kp"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [25]
+}
 
 [sub_resource type="Animation" id="Animation_gydte"]
 resource_name = "attack_animation"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.5708, 3.14159, 4.71239, 0.0]
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"attack_melee_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_r66ey"]
+resource_name = "death_animation"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43, 44, 45, 46, 47]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [16]
+}
+
+[sub_resource type="Animation" id="Animation_x3s7l"]
+resource_name = "hurt_animation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_y63c5"]
+resource_name = "idle_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_3q2ev"]
+resource_name = "walk_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s18v7"]
 _data = {
 "RESET": SubResource("Animation_do7kp"),
-"attack_animation": SubResource("Animation_gydte")
+"attack_animation": SubResource("Animation_gydte"),
+"death_animation": SubResource("Animation_r66ey"),
+"hurt_animation": SubResource("Animation_x3s7l"),
+"idle_animation": SubResource("Animation_y63c5"),
+"walk_animation": SubResource("Animation_3q2ev")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8muh"]
-radius = 61.0
+radius = 3.16228
 
 [node name="Soldier" instance=ExtResource("1_5r2b2")]
-speed = 100
+damage = 3
+distance_maximun = 5
+speed = 85
+hp = 10
 
 [node name="AbstractStateMachine" parent="." index="0"]
 character_path = NodePath("..")
-START_STATE = NodePath("Chase")
-STATES_LIST = Array[NodePath]([NodePath("Chase"), NodePath("Idle")])
+START_STATE = NodePath("Idle")
+STATES_LIST = Array[NodePath]([NodePath("Chase"), NodePath("Idle"), NodePath("Attack"), NodePath("Hurt"), NodePath("Death")])
 
 [node name="Chase" type="Node" parent="AbstractStateMachine" index="0"]
 script = ExtResource("3_vqhm4")
@@ -48,8 +174,28 @@ state_id = "chase"
 script = ExtResource("3_5ltk0")
 state_id = "idle"
 
+[node name="Attack" type="Node" parent="AbstractStateMachine" index="2"]
+script = ExtResource("4_4ielo")
+state_id = "attack"
+
+[node name="AttackCoolDown" type="Timer" parent="AbstractStateMachine/Attack" index="0"]
+one_shot = true
+
+[node name="Hurt" type="Node" parent="AbstractStateMachine" index="3"]
+script = ExtResource("5_525is")
+state_id = "hurt"
+
+[node name="Death" type="Node" parent="AbstractStateMachine" index="4"]
+script = ExtResource("6_7ytrk")
+state_id = "death"
+
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("5_owdn3")
+position = Vector2(0, -7)
+texture = ExtResource("4_vdo8t")
+hframes = 8
+vframes = 6
+frame = 25
+region_rect = Rect2(0, 0, 320, 192)
 
 [node name="AnimationPlayer" parent="." index="2"]
 libraries = {
@@ -57,11 +203,22 @@ libraries = {
 }
 
 [node name="NavigationAgent2D" parent="." index="3"]
-path_desired_distance = 48.0
-target_desired_distance = 140.0
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 128.0
 
 [node name="PathTimer" parent="." index="4"]
 wait_time = 0.33
 
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CircleShape2D_b8muh")
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 12.0
+offset_bottom = -11.0
+
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Chase" method="_on_soldier_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Idle" method="_on_soldier_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Attack" method="_on_soldier_character_hurt"]
