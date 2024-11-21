@@ -2,16 +2,15 @@ extends Area2D
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
 
-@export var VELOCITY: float = 0
+@export var damage: int
 
 var direction: Vector2
-var damage: int
 var collision: int
+var VELOCITY: float
 
-func initialize(initial_position: Vector2, dir: Vector2, speed: int, dam: int, angle: float, isTeamOne: bool) -> void:
+func initialize(initial_position: Vector2, dir: Vector2, speed: int, angle: float, isTeamOne: bool) -> void:
 	position = initial_position
 	rotation += angle
-	damage = dam
 	direction = dir
 	VELOCITY = speed
 #	Los del teamOne detectan colision con layer 2 y viceversa.

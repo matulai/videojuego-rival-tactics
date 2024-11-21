@@ -4,13 +4,13 @@
 [ext_resource type="Texture2D" uid="uid://bbl52ylkhlmx3" path="res://assets/dark_arrow.png" id="2_mqocw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxoe4"]
-size = Vector2(21, 9)
+size = Vector2(12, 4)
 
 [node name="Arrow" instance=ExtResource("1_3et7s")]
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-9, 1)
-scale = Vector2(3, 3)
+scale = Vector2(2, 2)
 texture = ExtResource("2_mqocw")
 
 [node name="LifetimeTimer" parent="." index="1"]
@@ -18,5 +18,5 @@ wait_time = 5.0
 one_shot = true
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(-10.5, -0.5)
+position = Vector2(-9, 0)
 shape = SubResource("RectangleShape2D_sxoe4")

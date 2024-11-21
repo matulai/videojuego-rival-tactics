@@ -5,6 +5,7 @@
 [node name="Proyectile" type="Area2D"]
 collision_layer = 4
 script = ExtResource("1_w5fdp")
+damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
