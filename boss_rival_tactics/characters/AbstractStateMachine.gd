@@ -92,7 +92,6 @@ func _on_animation_finished(anim_name: String = "") -> void:
 		return
 	current_state._on_animation_finished(anim_name)
 
-
 # Función de cambio de estado
 func _change_state(state_name: String) -> void:
 	if !_active:
