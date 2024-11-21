@@ -1,32 +1,154 @@
-[gd_scene load_steps=9 format=3 uid="uid://bs2lywj3j76gw"]
+[gd_scene load_steps=18 format=3 uid="uid://bs2lywj3j76gw"]
 
 [ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_kokge"]
-[ext_resource type="Texture2D" uid="uid://ddonrslxbn1s3" path="res://assets/sprites/player.png" id="2_0fsfe"]
 [ext_resource type="Script" path="res://characters/archer/Archer.gd" id="2_roswg"]
 [ext_resource type="Script" path="res://characters/archer/states/AttackState.gd" id="2_sug25"]
 [ext_resource type="Script" path="res://characters/archer/states/ChaseState.gd" id="3_2fcnj"]
 [ext_resource type="PackedScene" uid="uid://chkoi4g0d2gkg" path="res://weapons/arrow/Arrow.tscn" id="3_keocn"]
 [ext_resource type="Script" path="res://characters/archer/states/IdleState.gd" id="4_phqpc"]
+[ext_resource type="Texture2D" uid="uid://3hncxyaytsyk" path="res://assets/sprites/guard_bow.png" id="7_4hmgu"]
+[ext_resource type="Script" path="res://characters/archer/states/HurtState.gd" id="7_tv853"]
+[ext_resource type="Script" path="res://characters/archer/states/DeathState.gd" id="8_s3xll"]
+
+[sub_resource type="Animation" id="Animation_px1rh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gtlgg"]
+resource_name = "death_animation"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [60, 61, 62, 63, 64, 65]
+}
+
+[sub_resource type="Animation" id="Animation_yex7t"]
+resource_name = "hurt_animation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [50, 51, 52, 53]
+}
+
+[sub_resource type="Animation" id="Animation_j5omg"]
+resource_name = "idle_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_cv5rl"]
+resource_name = "walk_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13]
+}
+
+[sub_resource type="Animation" id="Animation_7dekq"]
+resource_name = "shoot_animation"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"fire"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x8dxr"]
+_data = {
+"RESET": SubResource("Animation_px1rh"),
+"death_animation": SubResource("Animation_gtlgg"),
+"hurt_animation": SubResource("Animation_yex7t"),
+"idle_animation": SubResource("Animation_j5omg"),
+"shoot_animation": SubResource("Animation_7dekq"),
+"walk_animation": SubResource("Animation_cv5rl")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ml0b"]
-radius = 16.0312
+radius = 3.0
 
 [node name="Archer" instance=ExtResource("1_kokge")]
 script = ExtResource("2_roswg")
 projectile_scene = ExtResource("3_keocn")
+distance_maximun = 48
 speed = 150
+hp = 6
 
 [node name="AbstractStateMachine" parent="." index="0"]
 character_path = NodePath("..")
 START_STATE = NodePath("Chase")
-STATES_LIST = Array[NodePath]([NodePath("Attack"), NodePath("Chase"), NodePath("Idle")])
+STATES_LIST = Array[NodePath]([NodePath("Attack"), NodePath("Chase"), NodePath("Idle"), NodePath("Hurt"), NodePath("Death")])
 
 [node name="Attack" type="Node" parent="AbstractStateMachine" index="0"]
 script = ExtResource("2_sug25")
 state_id = "attack"
 
 [node name="AttackCoolDown" type="Timer" parent="AbstractStateMachine/Attack" index="0"]
-wait_time = 2.5
 one_shot = true
 
 [node name="Chase" type="Node" parent="AbstractStateMachine" index="1"]
@@ -37,13 +159,33 @@ state_id = "chase"
 script = ExtResource("4_phqpc")
 state_id = "idle"
 
+[node name="Hurt" type="Node" parent="AbstractStateMachine" index="3"]
+script = ExtResource("7_tv853")
+state_id = "hurt"
+
+[node name="Death" type="Node" parent="AbstractStateMachine" index="4"]
+script = ExtResource("8_s3xll")
+state_id = "death"
+
 [node name="Sprite2D" parent="." index="1"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_0fsfe")
+position = Vector2(0, -5)
+texture = ExtResource("7_4hmgu")
+hframes = 10
+vframes = 7
+
+[node name="ArrowSpawn" type="Marker2D" parent="Sprite2D" index="0"]
+position = Vector2(4, 5)
+scale = Vector2(2, 2)
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_x8dxr")
+}
 
 [node name="NavigationAgent2D" parent="." index="3"]
 path_desired_distance = 48.0
-target_desired_distance = 500.0
+target_desired_distance = 300.0
+path_max_distance = 128.0
 
 [node name="PathTimer" parent="." index="4"]
 wait_time = 0.33
@@ -51,9 +193,12 @@ wait_time = 0.33
 [node name="CollisionShape2D" parent="." index="5"]
 shape = SubResource("CircleShape2D_7ml0b")
 
-[node name="Node2D" type="Node2D" parent="." index="6"]
+[node name="HealthBar" parent="." index="6"]
+offset_left = -12.0
+offset_top = -10.0
+offset_right = 12.0
+offset_bottom = -8.0
 
-[node name="ArrowSpawn" type="Marker2D" parent="Node2D" index="0"]
-position = Vector2(20, 0)
-
-[connection signal="timeout" from="AbstractStateMachine/Attack/AttackCoolDown" to="AbstractStateMachine/Attack" method="_on_attack_cool_down_timeout"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Attack" method="_on_archer_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Chase" method="_on_archer_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Idle" method="_on_archer_character_hurt"]

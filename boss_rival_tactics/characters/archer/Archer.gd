@@ -1,11 +1,13 @@
 extends TroopUnit
 
-@onready var arrow_spawn: Marker2D = $Node2D/ArrowSpawn
-@onready var arrow_spawn_node: Node2D = $Node2D
+@onready var arrow_spawn: Marker2D = $Sprite2D/ArrowSpawn
 
 @export var projectile_scene: PackedScene
 
 func fire() -> void:
+	if not is_instance_valid(target):
+		return
+	play_sound("res://music_sonds/bow-shoot-sound.wav")
 	var projectile_instance = projectile_scene.instantiate()
 	
 	var angle_to_target = get_angle_to(target.position)
@@ -15,7 +17,6 @@ func fire() -> void:
 		arrow_spawn.global_position, 
 		direction,
 		700.0, 
-		damage,
 		angle_to_target,
 		isTeamOne
 	)
