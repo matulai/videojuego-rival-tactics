@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
 [ext_resource type="Texture2D" uid="uid://bx75jmdr54ljn" path="res://assets/tilesets/Grass.png" id="1_rkmp8"]
-[ext_resource type="PackedScene" uid="uid://6bv8d0kcugq6" path="res://characters/player/Player.tscn" id="4_4m2vr"]
+[ext_resource type="PackedScene" uid="uid://ck7rlj4y2tqee" path="res://characters/player/players/PlayerMage.tscn" id="4_q13tb"]
 [ext_resource type="Texture2D" uid="uid://bdud80ufe0f1y" path="res://assets/tilesets/overworld_tileset_grass.png" id="4_twpd1"]
 [ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="5_7eoaf"]
 [ext_resource type="Texture2D" uid="uid://dkne2x8q5jypc" path="res://assets/tilesets/BaseSet.png" id="5_h5syy"]
@@ -69,7 +69,7 @@ agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2a3dl"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dy4b3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luxw2"]
 texture = ExtResource("1_rkmp8")
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wdq22")
@@ -156,7 +156,7 @@ texture = ExtResource("1_rkmp8")
 
 [sub_resource type="TileSet" id="TileSet_ih28e"]
 navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_dy4b3")
+sources/0 = SubResource("TileSetAtlasSource_luxw2")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ec1dc"]
 texture = ExtResource("4_twpd1")
@@ -1588,8 +1588,8 @@ shadow_offset = Vector2(2.5, 2.5)
 script = ExtResource("1_5op4d")
 unit_scenes_left = Array[PackedScene]([ExtResource("9_wpucm"), ExtResource("5_7eoaf")])
 unit_scenes_right = Array[PackedScene]([ExtResource("5_7eoaf"), ExtResource("9_wpucm")])
-player_one_scene = ExtResource("4_4m2vr")
-player_two_scene = ExtResource("4_4m2vr")
+player_one_scene = ExtResource("4_q13tb")
+player_two_scene = ExtResource("4_q13tb")
 should_spawn_players = true
 
 [node name="AutoLoad" type="Node" parent="."]
