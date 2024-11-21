@@ -4,28 +4,39 @@ extends Character
 @export var damage: int
 
 @onready var hitbox: Area2D = $Hitbox
-@onready var attack_cooldown: Timer = $AttackCooldown
-@onready var slash_sprite_node: Node2D = $Node2D
+@onready var can_attack: bool = true
+
+var player_inputs: Dictionary = {
+	1: {
+		"move_left": "move_left_1",
+		"move_right": "move_right_1",
+		"move_up": "move_up_1",
+		"move_down": "move_down_1",
+		"attack": "attack_1"
+	},
+	2: {
+		"move_left": "move_left_2",
+		"move_right": "move_right_2",
+		"move_up": "move_up_2",
+		"move_down": "move_down_2",
+		"attack": "attack_2"
+	}
+}
+
+@onready var inputs: Dictionary = player_inputs[1 if is_player_one else 2]
 
 func handle_input() -> void:
-	if is_player_one:
-		move_direction = Input.get_vector("move_left_1", "move_right_1", "move_up_1", "move_down_1")
-		if move_direction:
-			slash_sprite_node.rotation = move_direction.angle()
-			hitbox.rotation = move_direction.angle()
-		if Input.is_action_just_pressed("attack_1"):
-			attack()
-	else :
-		move_direction = Input.get_vector("move_left_2", "move_right_2", "move_up_2", "move_down_2")
-		if move_direction:
-			slash_sprite_node.rotation = move_direction.angle()
-			hitbox.rotation = move_direction.angle()
-		if Input.is_action_just_pressed("attack_2"):
-			attack()
+	move_direction = Input.get_vector(inputs["move_left"], inputs["move_right"], inputs["move_up"], inputs["move_down"])
+	if velocity.x < 0:
+		hitbox.scale.x = -1
+	elif velocity.x > 0:
+		hitbox.scale.x = 1
+
+func is_attack_pressed() -> bool:
+	return Input.is_action_just_pressed(inputs["attack"])
 
 func attack() -> void:
-	if attack_cooldown.is_stopped():
-		attack_cooldown.start()
+	if can_attack:
 		_play_animation("attack_animation")
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
