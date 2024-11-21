@@ -53,13 +53,13 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 400.0
-offset_top = -200.0
-offset_right = -400.0
+offset_left = 315.0
+offset_top = -180.0
+offset_right = -315.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_constants/separation = 50
+theme_override_constants/separation = 36
 alignment = 1
 
 [node name="StartButton" type="Button" parent="MenuOptions/Buttons"]
