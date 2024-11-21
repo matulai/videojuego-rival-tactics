@@ -28,6 +28,10 @@ extends Node
 @onready var player_one_spawn: Marker2D = $PlayersSpawner/PlayerOneSpawn
 @onready var player_two_spawn: Marker2D = $PlayersSpawner/PlayerTwoSpawn
 
+#Temportizadores para respawns de jugadores al morir
+@onready var timer_respawn_player_one: Timer = $PlayersRespawnTimers/PlayerOneTimer
+@onready var timer_respawn_player_two: Timer = $PlayersRespawnTimers/PlayerTwoTimer
+
 var spawn_timer = 0.0
 
 func _ready() -> void:
@@ -71,23 +75,39 @@ func spawn_unit(side: String) -> void:
 func spawn_players() -> void:
 	# Instanciar el jugador uno y establecer su posición
 	if should_spawn_players:
-		var player_one = player_one_scene.instantiate()
-		player_one.position = player_one_spawn.position
-		player_one.is_player_one = true
-		player_one.isTeamOne = true
-#		temporal
-		player_one.damage = 1
-#
-		player_one_army.add_child(player_one)
-		GLOBAL.add_unit_to_army_one(player_one)
+		player_one_intiantiate()
+		player_two_intiantiate()
 
-		# Instanciar el jugador dos y establecer su posición
-		var player_two = player_two_scene.instantiate()
-		player_two.position = player_two_spawn.position
-		player_two.is_player_one = false
-		player_two.isTeamOne = false
-#		temporal
-		player_two.damage = 1
-#
-		player_two_army.add_child(player_two)
-		GLOBAL.add_unit_to_army_two(player_two)
+func player_one_intiantiate() -> void:
+	var player_one = player_one_scene.instantiate()
+	player_one.position = player_one_spawn.position
+	player_one.is_player_one = true
+	player_one.isTeamOne = true
+	player_one_army.add_child(player_one)
+	GLOBAL.add_unit_to_army_one(player_one)
+
+	player_one.connect("death_player", Callable(self, "_on_player_death"))
+
+func player_two_intiantiate() -> void:
+	var player_two = player_two_scene.instantiate()
+	player_two.position = player_two_spawn.position
+	player_two.is_player_one = false
+	player_two.isTeamOne = false
+
+	player_two_army.add_child(player_two)
+	GLOBAL.add_unit_to_army_two(player_two)
+
+	player_two.connect("death_player", Callable(self, "_on_player_death"))
+
+func _on_player_death(is_player_one: bool) -> void:
+	if is_player_one:
+		timer_respawn_player_one.start()
+	else:
+		timer_respawn_player_two.start()
+
+
+func _on_player_one_timer_timeout() -> void:
+	player_one_intiantiate()
+
+func _on_player_two_timer_timeout() -> void:
+	player_two_intiantiate()

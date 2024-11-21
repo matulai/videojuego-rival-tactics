@@ -1,39 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://c70lvth7u7qt5"]
+[gd_scene load_steps=2 format=3 uid="uid://c70lvth7u7qt5"]
 
 [ext_resource type="PackedScene" uid="uid://bhg541i6s3k1o" path="res://scenes/Game.tscn" id="1_f4e6o"]
-[ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="2_e2271"]
-[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="2_vbfmv"]
 
 [node name="MainManuBackground" instance=ExtResource("1_f4e6o")]
 should_spawn_players = false
-
-[node name="Archer" parent="PlayerOneArmyNode" index="0" instance=ExtResource("2_e2271")]
-position = Vector2(162, 266)
-isTeamOne = true
-
-[node name="Archer2" parent="PlayerOneArmyNode" index="1" instance=ExtResource("2_e2271")]
-position = Vector2(166, 756)
-isTeamOne = true
-
-[node name="Soldier" parent="PlayerOneArmyNode" index="2" instance=ExtResource("2_vbfmv")]
-position = Vector2(132, 509)
-isTeamOne = true
-
-[node name="Soldier2" parent="PlayerOneArmyNode" index="3" instance=ExtResource("2_vbfmv")]
-position = Vector2(372, 443)
-isTeamOne = true
-
-[node name="Archer" parent="PlayerTwoArmyNode" index="0" instance=ExtResource("2_e2271")]
-position = Vector2(1440, 188)
-
-[node name="Archer2" parent="PlayerTwoArmyNode" index="1" instance=ExtResource("2_e2271")]
-position = Vector2(1402, 764)
-
-[node name="Soldier" parent="PlayerTwoArmyNode" index="2" instance=ExtResource("2_vbfmv")]
-position = Vector2(1342, 370)
-
-[node name="Soldier2" parent="PlayerTwoArmyNode" index="3" instance=ExtResource("2_vbfmv")]
-position = Vector2(1213, 600)
 
 [node name="Control" parent="." index="8"]
 process_mode = 4

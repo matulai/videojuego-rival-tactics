@@ -6,6 +6,8 @@ extends Character
 @onready var hitbox: Area2D = $Hitbox
 @onready var can_attack: bool = true
 
+signal death_player(is_player_one: bool)
+
 var player_inputs: Dictionary = {
 	1: {
 		"move_left": "move_left_1",
@@ -42,3 +44,7 @@ func attack() -> void:
 func _on_hitbox_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage") and (body.isTeamOne != isTeamOne):
 		body.take_damage(damage, 0, 0)
+
+func remove() -> void:
+	emit_signal("death_player", is_player_one)
+	queue_free()
