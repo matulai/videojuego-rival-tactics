@@ -7,6 +7,7 @@ class_name TroopUnit
 @export var damage: int = 1
 @export var knockback_force: int = 300
 @export var knockback_direction: Vector2 = Vector2.ZERO
+@export var distance_maximun: int
 
 var target: Character = null
 
@@ -29,8 +30,12 @@ func get_closest_node(nodes: Array) -> Node:
 				min_distance = distance
 				closest_node = node
 	return closest_node
-	
+
+func is_target_reached() -> bool:
+	return navigation_agent.distance_to_target() < (navigation_agent.get_target_desired_distance() + distance_maximun)
+
 func _on_path_timer_timeout() -> void:
+	#print("target_found")
 	if is_instance_valid(target):
 		target = get_closest_node(GLOBAL.get_unit_enemies(isTeamOne))
 		_get_path_to_enemy()
