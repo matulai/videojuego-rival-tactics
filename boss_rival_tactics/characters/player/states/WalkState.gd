@@ -9,6 +9,8 @@ func update(delta: float) -> void:
 		emit_signal("finished", "idle")
 	if character.is_attack_pressed():
 		emit_signal("finished", "attack")
+	if character.is_hability_pressed():
+		emit_signal("finished", "hability")
 	character.move()
 
 

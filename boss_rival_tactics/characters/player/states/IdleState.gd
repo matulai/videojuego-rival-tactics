@@ -9,6 +9,8 @@ func update(delta: float) -> void:
 		emit_signal("finished", "walk")
 	if character.is_attack_pressed():
 		emit_signal("finished", "attack")
+	if character.is_hability_pressed():
+		emit_signal("finished", "hability")
 
 
 func _on_player_character_hurt() -> void:
