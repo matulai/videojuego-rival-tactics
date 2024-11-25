@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6bv8d0kcugq6"]
+[gd_scene load_steps=11 format=3 uid="uid://6bv8d0kcugq6"]
 
 [ext_resource type="PackedScene" uid="uid://ccncik8uh1a2r" path="res://characters/Character.tscn" id="1_j1huk"]
 [ext_resource type="Script" path="res://characters/player/Player.gd" id="2_dtn6i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://characters/archer/states/HurtState.gd" id="7_i3eae"]
 [ext_resource type="Script" path="res://characters/archer/states/DeathState.gd" id="8_v4mqd"]
 [ext_resource type="Script" path="res://characters/player/hability.gd" id="9_j354r"]
+[ext_resource type="PackedScene" uid="uid://gmr2ryt5hn17" path="res://scenes/HabilityBar.tscn" id="10_t57kl"]
 
 [node name="Player" instance=ExtResource("1_j1huk")]
 script = ExtResource("2_dtn6i")
@@ -51,6 +52,8 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 position = Vector2(25.5, -1.5)
 disabled = true
+
+[node name="HabilityBar" parent="." index="6" instance=ExtResource("10_t57kl")]
 
 [connection signal="character_hurt" from="." to="AbstractStateMachine/Idle" method="_on_player_character_hurt"]
 [connection signal="character_hurt" from="." to="AbstractStateMachine/Walk" method="_on_player_character_hurt"]

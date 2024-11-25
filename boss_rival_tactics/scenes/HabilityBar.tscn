@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://gmr2ryt5hn17"]
+
+[ext_resource type="Script" path="res://scripts/HabilityBar.gd" id="1_g3ht6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pfpv0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rq4mc"]
+bg_color = Color(0.700851, 0.430333, 0.0871145, 1)
+
+[node name="HabilityBar" type="ProgressBar"]
+visible = false
+offset_right = 40.0
+offset_bottom = 20.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_pfpv0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rq4mc")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_g3ht6")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

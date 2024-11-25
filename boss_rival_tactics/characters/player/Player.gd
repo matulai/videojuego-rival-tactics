@@ -4,6 +4,7 @@ extends Character
 @export var damage: int
 
 @onready var hitbox: Area2D = $Hitbox
+@onready var hability_bar: ProgressBar = $HabilityBar
 
 signal death_player(is_player_one: bool)
 
