@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://deixwyw8nov3a"]
+[gd_scene load_steps=10 format=3 uid="uid://deixwyw8nov3a"]
 
 [ext_resource type="PackedScene" uid="uid://bftfueubtbhuy" path="res://weapons/Proyectile.tscn" id="1_dprg1"]
 [ext_resource type="Script" path="res://habilities/fireball/Fireball.gd" id="2_8o0r7"]
 [ext_resource type="Texture2D" uid="uid://b7n7wohj4253a" path="res://assets/sprites/magic_bullet1.png" id="3_ixo8g"]
+[ext_resource type="AudioStream" uid="uid://ds56qfdlxs5fw" path="res://music_sonds/magic-spell-impact.wav" id="4_ealcj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6yjk"]
 radius = 12.0
@@ -163,20 +164,11 @@ frame = 10
 position = Vector2(15, 0)
 shape = SubResource("CircleShape2D_o6yjk")
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." index="3"]
-emitting = false
-amount = 24
-lifetime = 0.5
-one_shot = true
-explosiveness = 1.0
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 150.0
-initial_velocity_max = 150.0
-scale_amount_max = 4.0
-color = Color(0.554711, 0.000222749, 0.554888, 1)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
 "": SubResource("AnimationLibrary_s7w4v")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="4"]
+stream = ExtResource("4_ealcj")
+volume_db = -4.0

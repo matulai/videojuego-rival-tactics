@@ -1,7 +1,7 @@
 extends "res://weapons/Proyectile.gd"
 
-@onready var particles: CPUParticles2D = $CPUParticles2D
 @onready var animation: AnimationPlayer = $AnimationPlayer
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var is_exploting: bool = false
 
@@ -11,11 +11,14 @@ func _ready():
 	animation.play("idle")
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	animation.play("explosion")
-	set_physics_process(false)
+	explote()
 	if body.has_method("take_damage"):
 		body.take_damage(damage, 0, 0)
 
 func _on_lifetime_timer_timeout() -> void:
+	explote()
+
+func explote() -> void:
+	audio.play()
 	animation.play("explosion")
 	set_physics_process(false)

@@ -19,3 +19,6 @@ func fire() -> void:
 	)
 
 	get_tree().current_scene.add_child(projectile_instance)
+
+func hability_spell_cast_sound() -> void:
+	play_sound("res://music_sonds/magical-spell-cast.wav")
