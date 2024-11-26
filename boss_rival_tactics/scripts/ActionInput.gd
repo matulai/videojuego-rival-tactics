@@ -17,7 +17,6 @@ func _set_action_name(actionN: String) -> void:
 
 func _set_action_input(actionI: String) -> void:
 	action_input = actionI
-	print(actionI)
 	$HBoxContainer/Input.text = actionI
 
 func _on_button_pressed():
