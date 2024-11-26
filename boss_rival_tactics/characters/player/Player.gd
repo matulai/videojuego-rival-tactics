@@ -10,20 +10,20 @@ signal death_player(is_player_one: bool)
 
 var player_inputs: Dictionary = {
 	1: {
-		"move_left": "move_left_1",
-		"move_right": "move_right_1",
-		"move_up": "move_up_1",
-		"move_down": "move_down_1",
-		"attack": "attack_1",
-		"hability": "hability_1"
+		"move_left": "MOVE_LEFT_1",
+		"move_right": "MOVE_RIGHT_1",
+		"move_up": "MOVE_UP_1",
+		"move_down": "MOVE_DOWN_1",
+		"attack": "ATTACK_1",
+		"hability": "HABILITY_1"
 	},
 	2: {
-		"move_left": "move_left_2",
-		"move_right": "move_right_2",
-		"move_up": "move_up_2",
-		"move_down": "move_down_2",
-		"attack": "attack_2",
-		"hability": "hability_2"
+		"move_left": "MOVE_LEFT_2",
+		"move_right": "MOVE_RIGHT_2",
+		"move_up": "MOVE_UP_2",
+		"move_down": "MOVE_DOWN_2",
+		"attack": "ATTACK_2",
+		"hability": "HABILITY_2"
 	}
 }
 
