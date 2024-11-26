@@ -13,13 +13,12 @@ func _ready() -> void:
 
 func _set_action_name(actionN: String) -> void:
 	action_name = actionN
-	if Engine.is_editor_hint() && has_node("HBoxContainer/Action"):
-		$HBoxContainer/Action.text = actionN
+	$HBoxContainer/Action.text = actionN
 
 func _set_action_input(actionI: String) -> void:
 	action_input = actionI
-	if Engine.is_editor_hint() && has_node("HBoxContainer/Input"):
-		$HBoxContainer/Input.text = actionI
+	print(actionI)
+	$HBoxContainer/Input.text = actionI
 
 func _on_button_pressed():
 	input.text = "..."
