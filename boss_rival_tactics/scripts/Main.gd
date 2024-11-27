@@ -1,5 +1,8 @@
 extends Node
 
+# Senales
+signal game_end(is_team_one: bool)
+
 # Nodos de unidades de cada bando
 @onready var player_one_army = get_node("PlayerOneArmyNode")
 @onready var player_two_army = get_node("PlayerTwoArmyNode")
@@ -111,3 +114,7 @@ func _on_player_one_timer_timeout() -> void:
 
 func _on_player_two_timer_timeout() -> void:
 	player_two_intiantiate()
+
+func _on_castle_castle_destroyed(is_team_one: bool) -> void:
+	emit_signal("game_end", is_team_one)
+	get_tree().paused = true

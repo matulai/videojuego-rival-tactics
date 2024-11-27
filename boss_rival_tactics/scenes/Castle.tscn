@@ -89,6 +89,7 @@ animations = [{
 }]
 
 [node name="Castle" type="StaticBody2D"]
+process_mode = 3
 script = ExtResource("1_mdpo2")
 hp = 100
 
