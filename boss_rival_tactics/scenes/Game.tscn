@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://bhg541i6s3k1o"]
+[gd_scene load_steps=17 format=4 uid="uid://bhg541i6s3k1o"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
 [ext_resource type="PackedScene" uid="uid://ck7rlj4y2tqee" path="res://characters/player/players/PlayerMage.tscn" id="4_q13tb"]
 [ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="5_7eoaf"]
 [ext_resource type="Texture2D" uid="uid://dkne2x8q5jypc" path="res://assets/tilesets/BaseSet.png" id="5_h5syy"]
+[ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="7_e83k8"]
 [ext_resource type="FontVariation" uid="uid://c7vj672owbbn0" path="res://fonts/main_font.tres" id="9_eaxii"]
 [ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="9_wpucm"]
 [ext_resource type="PackedScene" uid="uid://ddmidwx5w2djs" path="res://scenes/PauseMenu.tscn" id="10_ueccs"]
@@ -2560,6 +2561,10 @@ isTeamOne = true
 position = Vector2(163, 507)
 isTeamOne = true
 
+[node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
+position = Vector2(129, 339)
+isTeamOne = true
+
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
 
 [node name="Archer" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
@@ -2579,6 +2584,9 @@ position = Vector2(1108, 358)
 
 [node name="Soldier3" parent="PlayerTwoArmyNode" instance=ExtResource("9_wpucm")]
 position = Vector2(1121, 585)
+
+[node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
+position = Vector2(1164, 333)
 
 [node name="Buildings" type="Node" parent="."]
 

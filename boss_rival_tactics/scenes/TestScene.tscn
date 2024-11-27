@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=4 uid="uid://brar6nuvlro10"]
+[gd_scene load_steps=20 format=4 uid="uid://brar6nuvlro10"]
 
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_egir0"]
 [ext_resource type="Script" path="res://scripts/Test_scene.gd" id="1_p8o58"]
 [ext_resource type="Texture2D" uid="uid://bx75jmdr54ljn" path="res://assets/tilesets/Grass.png" id="2_qqiog"]
 [ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="4_1s0in"]
 [ext_resource type="PackedScene" uid="uid://ck7rlj4y2tqee" path="res://characters/player/players/PlayerMage.tscn" id="4_auf8h"]
+[ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="5_nl1bl"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wdq22"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -168,6 +169,10 @@ tile_set = SubResource("TileSet_7aspu")
 [node name="PlayerMage" parent="PlayerOneArmyNode" instance=ExtResource("4_auf8h")]
 position = Vector2(212, 220)
 is_player_one = true
+isTeamOne = true
+
+[node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("5_nl1bl")]
+position = Vector2(357, 140)
 isTeamOne = true
 
 [node name="PlayerTwoArmyNode" type="Node" parent="."]

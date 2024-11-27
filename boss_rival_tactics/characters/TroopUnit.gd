@@ -9,7 +9,7 @@ class_name TroopUnit
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var distance_maximun: int
 
-var target: Character = null
+var target: PhysicsBody2D = null
 
 func chase() -> void:
 	var vector_to_next_point: Vector2 = navigation_agent.get_next_path_position() - global_position
