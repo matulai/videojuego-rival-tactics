@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bhg541i6s3k1o"]
+[gd_scene load_steps=16 format=4 uid="uid://bhg541i6s3k1o"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="7_e83k8"]
 [ext_resource type="PackedScene" uid="uid://ds15wc2owm5mn" path="res://scenes/GameOver.tscn" id="8_vhu54"]
 [ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="9_wpucm"]
+[ext_resource type="AudioStream" uid="uid://cv7fxrty441yi" path="res://music_sonds/Tower_Defence_Battle_Loop.ogg" id="10_qp2ni"]
 [ext_resource type="PackedScene" uid="uid://ddmidwx5w2djs" path="res://scenes/PauseMenu.tscn" id="10_ueccs"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_mwtnx"]
@@ -2608,6 +2609,11 @@ one_shot = true
 [node name="PlayerTwoTimer" type="Timer" parent="PlayersRespawnTimers"]
 wait_time = 10.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_qp2ni")
+volume_db = -3.0
+autoplay = true
 
 [connection signal="game_end" from="." to="Control/GameOver" method="_on_game_end_"]
 [connection signal="castle_destroyed" from="PlayerOneArmyNode/Castle" to="." method="_on_castle_castle_destroyed"]
