@@ -31,6 +31,10 @@ signal game_end(is_team_one: bool)
 @onready var player_one_spawn: Marker2D = $PlayersSpawner/PlayerOneSpawn
 @onready var player_two_spawn: Marker2D = $PlayersSpawner/PlayerTwoSpawn
 
+#Lugar donde apareceran los refuerzos
+@onready var player_one_reinforcements: Marker2D = $ReinforcementsSpawns/PlayerOneReinforcements
+@onready var player_two_reinforcements: Marker2D = $ReinforcementsSpawns/PlayerTwoReinforcements
+
 #Temportizadores para respawns de jugadores al morir
 @onready var timer_respawn_player_one: Timer = $PlayersRespawnTimers/PlayerOneTimer
 @onready var timer_respawn_player_two: Timer = $PlayersRespawnTimers/PlayerTwoTimer
@@ -63,20 +67,43 @@ func spawn_unit(side: String) -> void:
 	# Elegir posición aleatoria de spawn para el lado especificado
 	if side == "left":
 		# Elegir una escena de unidad aleatoria
-		var random_scene = unit_scenes_left[randi() % unit_scenes_left.size()]
-		var unit = random_scene.instantiate()
+		var unit: PhysicsBody2D = instantiate_random_unit_from("left")
 		unit.position = left_top_spawn_position.position if randi() % 2 == 0 else left_bottom_spawn_position.position
-		unit.isTeamOne = true
 		GLOBAL.add_unit_to_army_one(unit)
 		player_one_army.add_child(unit)
 	elif side == "right":
 		# Elegir una escena de unidad aleatoria
-		var random_scene = unit_scenes_right[randi() % unit_scenes_right.size()]
-		var unit = random_scene.instantiate()
+		var unit: PhysicsBody2D = instantiate_random_unit_from("right")
 		unit.position = right_top_spawn_position.position if randi() % 2 == 0 else right_bottom_spawn_position.position
-		unit.isTeamOne = false
 		GLOBAL.add_unit_to_army_two(unit)
 		player_two_army.add_child(unit)
+
+func instantiate_random_unit_from(side: String) -> PhysicsBody2D:
+	var random_scene: PackedScene
+	var unit: PhysicsBody2D
+	if side == "left":
+		random_scene = unit_scenes_left[randi() % unit_scenes_left.size()]
+		unit = random_scene.instantiate()
+		unit.isTeamOne = true
+	elif side == "right":
+		random_scene = unit_scenes_left[randi() % unit_scenes_left.size()]
+		unit = random_scene.instantiate()
+		unit.isTeamOne = false
+	return unit
+
+func instantiate_reinforcements_from(side: String, cant: int) -> void:
+	var position_offset = Vector2(0,-5)
+	for i in range(cant):
+		var unit = instantiate_random_unit_from(side)
+		if side == "left":
+			unit.position = player_one_reinforcements.position + position_offset
+			GLOBAL.add_unit_to_army_one(unit)
+			player_one_army.add_child(unit)
+		elif side == "right":
+			unit.position = player_two_reinforcements.position + position_offset
+			GLOBAL.add_unit_to_army_two(unit)
+			player_two_army.add_child(unit)
+	print("reinforcements_intantiated")
 
 func spawn_players() -> void:
 	# Instanciar el jugador uno y establecer su posición
@@ -111,7 +138,6 @@ func _on_player_death(is_player_one: bool) -> void:
 	else:
 		timer_respawn_player_two.start()
 
-
 func _on_player_one_timer_timeout() -> void:
 	player_one_intiantiate()
 
@@ -121,3 +147,7 @@ func _on_player_two_timer_timeout() -> void:
 func _on_castle_castle_destroyed(is_team_one: bool) -> void:
 	emit_signal("game_end", is_team_one)
 	get_tree().paused = true
+
+func _on_castle_castle_reinforcement_request(is_team_one: bool) -> void:
+	print("request_recieved", is_team_one)
+	instantiate_reinforcements_from("left" if is_team_one else "right", 5)
