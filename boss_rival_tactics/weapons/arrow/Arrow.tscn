@@ -7,6 +7,7 @@
 size = Vector2(12, 4)
 
 [node name="Arrow" instance=ExtResource("1_3et7s")]
+damage = 5
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-9, 1)

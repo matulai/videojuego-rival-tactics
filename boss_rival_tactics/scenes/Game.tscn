@@ -2508,7 +2508,7 @@ tile_set = SubResource("TileSet_hmpoe")
 [node name="PlayerOneArmyNode" type="Node" parent="."]
 
 [node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(129, 339)
+position = Vector2(200, 360)
 isTeamOne = true
 
 [node name="Archer" parent="PlayerOneArmyNode" instance=ExtResource("5_7eoaf")]
@@ -2538,7 +2538,7 @@ isTeamOne = true
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
 
 [node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(1164, 333)
+position = Vector2(1080, 360)
 
 [node name="Archer" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(1159, 66)
@@ -2612,7 +2612,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_qp2ni")
-autoplay = true
 
 [connection signal="game_end" from="." to="Control/GameOver" method="_on_game_end_"]
 [connection signal="castle_destroyed" from="PlayerOneArmyNode/Castle" to="." method="_on_castle_castle_destroyed"]

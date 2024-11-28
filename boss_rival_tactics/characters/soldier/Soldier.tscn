@@ -156,10 +156,11 @@ _data = {
 radius = 3.16228
 
 [node name="Soldier" instance=ExtResource("1_5r2b2")]
-damage = 3
+damage = 10
 distance_maximun = 5
-speed = 85
-hp = 10
+speed = 60
+max_hp = 25
+hp = 25
 
 [node name="AbstractStateMachine" parent="." index="0"]
 character_path = NodePath("..")
@@ -218,6 +219,9 @@ offset_left = -12.0
 offset_top = -13.0
 offset_right = 12.0
 offset_bottom = -11.0
+
+[node name="AudioStreamPlayer2D" parent="." index="7"]
+volume_db = 0.0
 
 [connection signal="character_hurt" from="." to="AbstractStateMachine/Chase" method="_on_soldier_character_hurt"]
 [connection signal="character_hurt" from="." to="AbstractStateMachine/Idle" method="_on_soldier_character_hurt"]

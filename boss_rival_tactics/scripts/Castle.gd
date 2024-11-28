@@ -19,6 +19,7 @@ func _ready() -> void:
 	health_bar.init_health(hp, isTeamOne)
 
 func take_damage(amount, dir, force) -> void:
+	print(hp)
 	self.hp -= amount
 	health_bar._set_health(self.hp)
 	if hp <= 0 and not is_burning:

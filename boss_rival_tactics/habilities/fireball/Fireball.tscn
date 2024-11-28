@@ -151,7 +151,7 @@ _data = {
 
 [node name="Fireball" instance=ExtResource("1_dprg1")]
 script = ExtResource("2_8o0r7")
-damage = 5
+damage = 12
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(4, 4)

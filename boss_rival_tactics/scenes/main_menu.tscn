@@ -37,6 +37,7 @@ corner_radius_bottom_left = 4
 bg_color = Color(0.333333, 0.258824, 0.184314, 1)
 
 [node name="MainMenu" type="Node"]
+process_mode = 3
 script = ExtResource("1_o6vmx")
 
 [node name="MenuOptions" type="Control" parent="."]
@@ -145,6 +146,7 @@ offset_bottom = 16.0
 visible = false
 
 [node name="MainManuBackground" parent="." instance=ExtResource("3_c6lau")]
+process_mode = 1
 player_one_scene = null
 player_two_scene = null
 

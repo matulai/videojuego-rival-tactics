@@ -92,7 +92,7 @@ animations = [{
 process_mode = 3
 z_index = 1
 script = ExtResource("1_mdpo2")
-hp = 100
+hp = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 9.5)
@@ -107,6 +107,7 @@ offset_left = -40.0
 offset_top = -51.0
 offset_right = 40.0
 offset_bottom = -41.0
+max_value = 500.0
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 

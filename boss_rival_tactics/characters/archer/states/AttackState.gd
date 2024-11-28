@@ -11,7 +11,7 @@ func update(delta: float) -> void:
 		character.chase()
 		if not character.is_target_reached():
 			emit_signal("finished", "chase")
-		if attack_cooldown.is_stopped():
+		elif attack_cooldown.is_stopped():
 			character._play_animation("shoot_animation")
 	else:
 		emit_signal("finished", "idle")

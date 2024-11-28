@@ -10,7 +10,8 @@ func fire() -> void:
 	play_sound("res://music_sonds/bow-shoot-sound.wav")
 	var projectile_instance = projectile_scene.instantiate()
 	
-	var angle_to_target = get_angle_to(target.position)
+	var target_position = target.global_position
+	var angle_to_target = arrow_spawn.global_position.angle_to_point(target_position)
 	var direction = Vector2(cos(angle_to_target), sin(angle_to_target))
 
 	projectile_instance.initialize(

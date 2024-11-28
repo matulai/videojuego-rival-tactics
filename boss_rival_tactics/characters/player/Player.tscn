@@ -15,6 +15,7 @@
 script = ExtResource("2_dtn6i")
 is_player_one = false
 damage = 0
+speed = 150
 
 [node name="AbstractStateMachine" parent="." index="0"]
 script = ExtResource("3_7x6qo")

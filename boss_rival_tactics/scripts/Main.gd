@@ -38,6 +38,7 @@ signal game_end(is_team_one: bool)
 var spawn_timer = 0.0
 
 func _ready() -> void:
+	get_tree().paused = false
 	# Obtener los enemigos (tropas) de cada bando
 	var player_one_enemies = player_two_army.get_children()
 	var player_two_enemies = player_one_army.get_children()
@@ -47,6 +48,8 @@ func _ready() -> void:
 	GLOBAL.set_player_two_enemies(player_two_enemies)
 	
 	spawn_players()
+	if should_spawn_players:
+		$AudioStreamPlayer2D.play()
 
 func _process(delta):
 	# Incrementar el temporizador

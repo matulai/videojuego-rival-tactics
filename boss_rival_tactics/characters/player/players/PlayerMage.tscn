@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_aeo8g"]
 resource_name = "attack_animation"
-length = 0.8
+length = 0.64
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -30,7 +30,7 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4, 0.48, 0.56),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [60, 61, 62, 70, 72, 73, 74, 75]
@@ -42,7 +42,7 @@ tracks/1/path = NodePath("Hitbox/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5, 0.8),
+"times": PackedFloat32Array(0.4, 0.64),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -54,7 +54,7 @@ tracks/2/path = NodePath("Hitbox/CollisionShape2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.5, 0.6),
+"times": PackedFloat32Array(0.4, 0.48),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(5, -7), Vector2(9, -1)]
@@ -66,7 +66,7 @@ tracks/3/path = NodePath("Hitbox/CollisionShape2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5, 0.6),
+"times": PackedFloat32Array(0.4, 0.48),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-0.785398, 0.0]
@@ -78,7 +78,7 @@ tracks/4/path = NodePath(".")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.32),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -203,9 +203,10 @@ size = Vector2(6.875, 14)
 [node name="PlayerMage" instance=ExtResource("1_3gvx5")]
 script = ExtResource("2_kgknf")
 projectile_scene = ExtResource("3_mdl6o")
-damage = 3
+damage = 8
 speed = 120
-hp = 14
+max_hp = 38
+hp = 38
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(0, -9)
@@ -245,3 +246,6 @@ offset_top = -11.0
 offset_right = 12.0
 offset_bottom = -9.0
 wait_time = 10
+
+[node name="AudioStreamPlayer2D" parent="." index="7"]
+volume_db = 0.0

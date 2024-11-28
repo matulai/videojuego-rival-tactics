@@ -1,14 +1,12 @@
 extends CharacterBody2D
 class_name Character
 
-@export var isTeamOne: bool
-
-@export var speed: int = 200
-
-@export var max_hp : int = 20
-@export var hp: int = 2: set = set_hp
-#signal hp_changed(new_hp)
 signal character_hurt()
+
+@export var isTeamOne: bool
+@export var speed: int = 200
+@export var max_hp : int
+@export var hp: int: set = set_hp
 
 @onready var sprite: Sprite2D = get_node("Sprite2D")
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
@@ -49,7 +47,6 @@ func remove() -> void:
 
 func set_hp(new_hp: int) -> void:
 	hp = clamp(new_hp, 0, max_hp)
-	#emit_signal("hp_changed", hp)
 
 func _play_animation(animation: String) -> void:
 	if animation_player.has_animation(animation):
