@@ -5,6 +5,10 @@ func enter() -> void:
 
 func update(delta: float) -> void:
 	if is_instance_valid(character.target):
+		if character.target is StaticBody2D:
+			character.set_max_distance_to_target_on(48)
+		else:
+			character.set_default_max_distance_to_taget()
 		character.chase()
 		character.move()
 		if character.navigation_agent.is_target_reached():

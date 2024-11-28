@@ -34,6 +34,12 @@ func get_closest_node(nodes: Array) -> Node:
 func is_target_reached() -> bool:
 	return navigation_agent.distance_to_target() < (navigation_agent.get_target_desired_distance() + distance_maximun)
 
+func set_default_max_distance_to_taget() -> void:
+	navigation_agent.set_target_desired_distance(10 + distance_maximun)
+
+func set_max_distance_to_target_on(n: int) -> void:
+	navigation_agent.set_target_desired_distance(n)
+
 func _on_path_timer_timeout() -> void:
 	#print("target_found")
 	if is_instance_valid(target):
