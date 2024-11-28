@@ -2507,8 +2507,12 @@ tile_set = SubResource("TileSet_hmpoe")
 
 [node name="PlayerOneArmyNode" type="Node" parent="."]
 
+[node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
+position = Vector2(129, 339)
+isTeamOne = true
+
 [node name="Archer" parent="PlayerOneArmyNode" instance=ExtResource("5_7eoaf")]
-position = Vector2(60, 460)
+position = Vector2(96, 451)
 isTeamOne = true
 
 [node name="Archer2" parent="PlayerOneArmyNode" instance=ExtResource("5_7eoaf")]
@@ -2528,14 +2532,13 @@ position = Vector2(66, 621)
 isTeamOne = true
 
 [node name="Soldier3" parent="PlayerOneArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(163, 507)
-isTeamOne = true
-
-[node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(129, 339)
+position = Vector2(173, 508)
 isTeamOne = true
 
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
+
+[node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
+position = Vector2(1164, 333)
 
 [node name="Archer" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(1159, 66)
@@ -2555,9 +2558,6 @@ position = Vector2(1108, 358)
 [node name="Soldier3" parent="PlayerTwoArmyNode" instance=ExtResource("9_wpucm")]
 position = Vector2(1121, 585)
 
-[node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(1164, 333)
-
 [node name="Buildings" type="Node" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -2566,16 +2566,16 @@ anchor_mode = 0
 [node name="UnitsSpawner" type="Node2D" parent="."]
 
 [node name="RightTop" type="Marker2D" parent="UnitsSpawner"]
-position = Vector2(1319, 40)
+position = Vector2(1300, 120)
 
 [node name="RightBottom" type="Marker2D" parent="UnitsSpawner"]
-position = Vector2(1330, 686)
+position = Vector2(1300, 600)
 
 [node name="LeftTop" type="Marker2D" parent="UnitsSpawner"]
-position = Vector2(-42, 59)
+position = Vector2(-20, 120)
 
 [node name="LeftBottom" type="Marker2D" parent="UnitsSpawner"]
-position = Vector2(-37, 665)
+position = Vector2(-20, 600)
 
 [node name="PlayersSpawner" type="Node2D" parent="."]
 
@@ -2612,7 +2612,6 @@ one_shot = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_qp2ni")
-volume_db = -3.0
 autoplay = true
 
 [connection signal="game_end" from="." to="Control/GameOver" method="_on_game_end_"]

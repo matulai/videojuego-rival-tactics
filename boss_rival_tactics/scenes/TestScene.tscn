@@ -178,7 +178,7 @@ isTeamOne = true
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
 
 [node name="Soldier" parent="PlayerTwoArmyNode" instance=ExtResource("4_1s0in")]
-position = Vector2(537, 211)
+position = Vector2(520, 200)
 
 [node name="Soldier2" parent="PlayerTwoArmyNode" instance=ExtResource("4_1s0in")]
-position = Vector2(549, 180)
+position = Vector2(521, 200)
