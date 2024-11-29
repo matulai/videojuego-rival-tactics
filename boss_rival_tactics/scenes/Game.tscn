@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bhg541i6s3k1o"]
+[gd_scene load_steps=17 format=4 uid="uid://bhg541i6s3k1o"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="7_e83k8"]
 [ext_resource type="PackedScene" uid="uid://ds15wc2owm5mn" path="res://scenes/GameOver.tscn" id="8_vhu54"]
 [ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="9_wpucm"]
+[ext_resource type="PackedScene" uid="uid://2xni1c5baefn" path="res://scenes/RespawnPlayerBar.tscn" id="10_knj1o"]
 [ext_resource type="AudioStream" uid="uid://cv7fxrty441yi" path="res://music_sonds/Tower_Defence_Battle_Loop.ogg" id="10_qp2ni"]
 [ext_resource type="PackedScene" uid="uid://ddmidwx5w2djs" path="res://scenes/PauseMenu.tscn" id="10_ueccs"]
 
@@ -2510,6 +2511,7 @@ tile_set = SubResource("TileSet_hmpoe")
 [node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
 position = Vector2(200, 360)
 isTeamOne = true
+hp = 1000
 
 [node name="Archer" parent="PlayerOneArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(96, 451)
@@ -2539,6 +2541,7 @@ isTeamOne = true
 
 [node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
 position = Vector2(1080, 360)
+hp = 1000
 
 [node name="Archer" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(1159, 66)
@@ -2600,15 +2603,33 @@ layout_mode = 1
 [node name="GameOver" parent="Control" instance=ExtResource("8_vhu54")]
 layout_mode = 1
 
-[node name="PlayersRespawnTimers" type="Node2D" parent="."]
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 10.0
+offset_right = -10.0
+offset_bottom = 30.0
+grow_horizontal = 2
 
-[node name="PlayerOneTimer" type="Timer" parent="PlayersRespawnTimers"]
-wait_time = 10.0
-one_shot = true
+[node name="TimerBarPlayerOne" parent="GUI" instance=ExtResource("10_knj1o")]
+layout_mode = 1
+offset_right = 250.0
+offset_bottom = 16.0
+time = 10
+is_team_one = true
 
-[node name="PlayerTwoTimer" type="Timer" parent="PlayersRespawnTimers"]
-wait_time = 10.0
-one_shot = true
+[node name="TimerBarPlayerTwo" parent="GUI" instance=ExtResource("10_knj1o")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_right = 0.0
+offset_bottom = 16.0
+grow_horizontal = 0
+fill_mode = 1
+time = 10
 
 [node name="ReinforcementsSpawns" type="Node2D" parent="."]
 
@@ -2626,5 +2647,5 @@ stream = ExtResource("10_qp2ni")
 [connection signal="castle_reinforcement_request" from="PlayerOneArmyNode/Castle" to="." method="_on_castle_castle_reinforcement_request"]
 [connection signal="castle_destroyed" from="PlayerTwoArmyNode/Castle" to="." method="_on_castle_castle_destroyed"]
 [connection signal="castle_reinforcement_request" from="PlayerTwoArmyNode/Castle" to="." method="_on_castle_castle_reinforcement_request"]
-[connection signal="timeout" from="PlayersRespawnTimers/PlayerOneTimer" to="." method="_on_player_one_timer_timeout"]
-[connection signal="timeout" from="PlayersRespawnTimers/PlayerTwoTimer" to="." method="_on_player_two_timer_timeout"]
+[connection signal="can_respawn_player" from="GUI/TimerBarPlayerOne" to="." method="_on_player_one_timer_timeout"]
+[connection signal="can_respawn_player" from="GUI/TimerBarPlayerTwo" to="." method="_on_player_two_timer_timeout"]

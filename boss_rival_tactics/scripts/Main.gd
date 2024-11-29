@@ -36,8 +36,8 @@ signal game_end(is_team_one: bool)
 @onready var player_two_reinforcements: Marker2D = $ReinforcementsSpawns/PlayerTwoReinforcements
 
 #Temportizadores para respawns de jugadores al morir
-@onready var timer_respawn_player_one: Timer = $PlayersRespawnTimers/PlayerOneTimer
-@onready var timer_respawn_player_two: Timer = $PlayersRespawnTimers/PlayerTwoTimer
+@onready var timer_bar_player_one: ProgressBar = $GUI/TimerBarPlayerOne
+@onready var timer_bar_player_two: ProgressBar = $GUI/TimerBarPlayerTwo
 
 var spawn_timer = 0.0
 
@@ -134,9 +134,9 @@ func player_two_intiantiate() -> void:
 
 func _on_player_death(is_player_one: bool) -> void:
 	if is_player_one:
-		timer_respawn_player_one.start()
+		timer_bar_player_one.start()
 	else:
-		timer_respawn_player_two.start()
+		timer_bar_player_two.start()
 
 func _on_player_one_timer_timeout() -> void:
 	player_one_intiantiate()

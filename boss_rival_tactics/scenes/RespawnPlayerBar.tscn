@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://2xni1c5baefn"]
+
+[ext_resource type="Script" path="res://scripts/RespawnPlayerBar.gd" id="1_400lv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dx3oc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58a54"]
+bg_color = Color(0.6, 0, 0.6, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.00784314, 0.00784314, 0.00784314, 1)
+shadow_color = Color(0, 0, 0, 0.784314)
+shadow_size = 1
+shadow_offset = Vector2(2.5, 2.5)
+
+[node name="TimerBarPlayer" type="ProgressBar"]
+visible = false
+offset_right = 1.0
+offset_bottom = 1.0
+theme_override_styles/background = SubResource("StyleBoxEmpty_dx3oc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_58a54")
+value = 50.0
+show_percentage = false
+script = ExtResource("1_400lv")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
