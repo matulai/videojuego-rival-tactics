@@ -1,6 +1,7 @@
 extends AbstractState
 
 func enter() -> void:
+	print("idle_state")
 	character.move_direction = Vector2.ZERO
 	character.move()
 	character._play_animation("idle_animation")

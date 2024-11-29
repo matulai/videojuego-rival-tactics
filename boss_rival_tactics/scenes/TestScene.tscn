@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://brar6nuvlro10"]
+[gd_scene load_steps=21 format=4 uid="uid://brar6nuvlro10"]
 
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_egir0"]
 [ext_resource type="Script" path="res://scripts/Test_scene.gd" id="1_p8o58"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ck7rlj4y2tqee" path="res://characters/player/players/PlayerMage.tscn" id="4_auf8h"]
 [ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="5_nl1bl"]
 [ext_resource type="PackedScene" uid="uid://n2qtv2die2ka" path="res://characters/soldier/RedCapGoblin/RedCapGoblin.tscn" id="6_wem31"]
+[ext_resource type="PackedScene" uid="uid://4qwjb8vp242w" path="res://characters/soldier/Swordman/Sworman.tscn" id="7_uqwcx"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wdq22"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -167,7 +168,7 @@ tile_set = SubResource("TileSet_7aspu")
 [node name="PlayerOneArmyNode" type="Node" parent="."]
 
 [node name="PlayerMage" parent="PlayerOneArmyNode" instance=ExtResource("4_auf8h")]
-position = Vector2(865, 360)
+position = Vector2(993, 158)
 is_player_one = true
 isTeamOne = true
 
@@ -175,7 +176,11 @@ isTeamOne = true
 position = Vector2(357, 140)
 isTeamOne = true
 
+[node name="Sworman" parent="PlayerOneArmyNode" instance=ExtResource("7_uqwcx")]
+position = Vector2(1077, 261)
+isTeamOne = true
+
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
 
 [node name="RedCapGoblin" parent="PlayerTwoArmyNode" instance=ExtResource("6_wem31")]
-position = Vector2(1043, 42)
+position = Vector2(791, 99)

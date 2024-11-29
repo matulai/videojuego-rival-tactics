@@ -11,7 +11,8 @@
 collision_layer = 16
 damage = 10
 distance_maximun = 5
-distance_for_hability = 0
+distance_for_hability_min = 0
+distance_for_hability_max = 0
 speed = 60
 max_hp = 25
 hp = 25

@@ -8,7 +8,8 @@ class_name TroopUnit
 @export var knockback_force: int = 300
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var distance_maximun: int
-@export var distance_for_hability: int
+@export var distance_for_hability_min: int
+@export var distance_for_hability_max: int
 
 var target: PhysicsBody2D = null
 

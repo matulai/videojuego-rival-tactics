@@ -5,21 +5,6 @@
 [ext_resource type="Script" path="res://characters/soldier/RedCapGoblin/States/ChaseState.gd" id="2_ym5lp"]
 [ext_resource type="Script" path="res://characters/soldier/RedCapGoblin/States/HabilityState.gd" id="3_c8su3"]
 
-[sub_resource type="Animation" id="Animation_m7pdu"]
-resource_name = "idle_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_xwxmx"]
 length = 0.001
 tracks/0/type = "value"
@@ -33,36 +18,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_4bqod"]
-resource_name = "walk_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [8, 9, 10, 11]
-}
-
-[sub_resource type="Animation" id="Animation_j7pju"]
-resource_name = "hurt_animation"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [48, 49, 50, 51]
 }
 
 [sub_resource type="Animation" id="Animation_2btv7"]
@@ -148,12 +103,62 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"teleport_to_target"
+}, {
+"args": [],
+"method": &"target_do_damage"
 }]
+}
+
+[sub_resource type="Animation" id="Animation_j7pju"]
+resource_name = "hurt_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51]
+}
+
+[sub_resource type="Animation" id="Animation_m7pdu"]
+resource_name = "idle_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_4bqod"]
+resource_name = "walk_animation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1y83x"]
@@ -171,7 +176,11 @@ _data = {
 radius = 3.0
 
 [node name="RedCapGoblin" instance=ExtResource("1_qn4fh")]
-distance_maximun = 72
+damage = 5
+distance_for_hability_min = 80
+distance_for_hability_max = 240
+max_hp = 32
+hp = 32
 
 [node name="AbstractStateMachine" parent="." index="0"]
 STATES_LIST = Array[NodePath]([NodePath("Idle"), NodePath("Attack"), NodePath("Hurt"), NodePath("Death"), NodePath("Hability"), NodePath("Chase")])
@@ -179,9 +188,16 @@ STATES_LIST = Array[NodePath]([NodePath("Idle"), NodePath("Attack"), NodePath("H
 [node name="Chase" parent="AbstractStateMachine" index="0"]
 script = ExtResource("2_ym5lp")
 
+[node name="AttackCoolDown" parent="AbstractStateMachine/Attack" index="0"]
+wait_time = 0.75
+
 [node name="Hability" type="Node" parent="AbstractStateMachine" index="5"]
 script = ExtResource("3_c8su3")
 state_id = "hability"
+
+[node name="HabilityCoolDown" type="Timer" parent="AbstractStateMachine/Hability" index="0"]
+wait_time = 12.0
+one_shot = true
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_fpxhf")
