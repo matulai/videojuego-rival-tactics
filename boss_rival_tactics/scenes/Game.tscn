@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dkne2x8q5jypc" path="res://assets/tilesets/BaseSet.png" id="5_h5syy"]
 [ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="7_e83k8"]
 [ext_resource type="PackedScene" uid="uid://ds15wc2owm5mn" path="res://scenes/GameOver.tscn" id="8_vhu54"]
-[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Soldier.tscn" id="9_wpucm"]
+[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Melee.tscn" id="9_wpucm"]
 [ext_resource type="PackedScene" uid="uid://2xni1c5baefn" path="res://scenes/RespawnPlayerBar.tscn" id="10_knj1o"]
 [ext_resource type="AudioStream" uid="uid://cv7fxrty441yi" path="res://music_sonds/Tower_Defence_Battle_Loop.ogg" id="10_qp2ni"]
 [ext_resource type="PackedScene" uid="uid://ddmidwx5w2djs" path="res://scenes/PauseMenu.tscn" id="10_ueccs"]

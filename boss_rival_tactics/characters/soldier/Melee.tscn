@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3dn20yxty3tt"]
+
+[ext_resource type="PackedScene" uid="uid://cxqchi54ki4jq" path="res://characters/TroopUnit.tscn" id="1_5r2b2"]
+[ext_resource type="Script" path="res://characters/soldier/states/IdleState.gd" id="3_5ltk0"]
+[ext_resource type="Script" path="res://characters/soldier/states/ChaseState.gd" id="3_vqhm4"]
+[ext_resource type="Script" path="res://characters/soldier/states/AttackState.gd" id="4_4ielo"]
+[ext_resource type="Script" path="res://characters/archer/states/HurtState.gd" id="5_525is"]
+[ext_resource type="Script" path="res://characters/archer/states/DeathState.gd" id="6_7ytrk"]
+
+[node name="Melee" instance=ExtResource("1_5r2b2")]
+collision_layer = 16
+damage = 10
+distance_maximun = 5
+distance_for_hability = 0
+speed = 60
+max_hp = 25
+hp = 25
+
+[node name="AbstractStateMachine" parent="." index="0"]
+character_path = NodePath("..")
+START_STATE = NodePath("Idle")
+STATES_LIST = Array[NodePath]([NodePath("Chase"), NodePath("Idle"), NodePath("Attack"), NodePath("Hurt"), NodePath("Death")])
+
+[node name="Chase" type="Node" parent="AbstractStateMachine" index="0"]
+script = ExtResource("3_vqhm4")
+state_id = "chase"
+
+[node name="Idle" type="Node" parent="AbstractStateMachine" index="1"]
+script = ExtResource("3_5ltk0")
+state_id = "idle"
+
+[node name="Attack" type="Node" parent="AbstractStateMachine" index="2"]
+script = ExtResource("4_4ielo")
+state_id = "attack"
+
+[node name="AttackCoolDown" type="Timer" parent="AbstractStateMachine/Attack" index="0"]
+one_shot = true
+
+[node name="Hurt" type="Node" parent="AbstractStateMachine" index="3"]
+script = ExtResource("5_525is")
+state_id = "hurt"
+
+[node name="Death" type="Node" parent="AbstractStateMachine" index="4"]
+script = ExtResource("6_7ytrk")
+state_id = "death"
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -7)
+hframes = 8
+vframes = 6
+frame = 8
+region_rect = Rect2(0, 0, 320, 192)
+
+[node name="NavigationAgent2D" parent="." index="3"]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_max_distance = 128.0
+
+[node name="PathTimer" parent="." index="4"]
+wait_time = 0.33
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -12.0
+offset_top = -13.0
+offset_right = 12.0
+offset_bottom = -11.0
+
+[node name="AudioStreamPlayer2D" parent="." index="7"]
+volume_db = 0.0
+
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Chase" method="_on_soldier_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Idle" method="_on_soldier_character_hurt"]
+[connection signal="character_hurt" from="." to="AbstractStateMachine/Attack" method="_on_soldier_character_hurt"]

@@ -1,0 +1,202 @@
+[gd_scene load_steps=14 format=3 uid="uid://n2qtv2die2ka"]
+
+[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Melee.tscn" id="1_qn4fh"]
+[ext_resource type="Texture2D" uid="uid://bma5c7gdftv6c" path="res://assets/sprites/goblin_red_cap.png" id="2_fpxhf"]
+[ext_resource type="Script" path="res://characters/soldier/RedCapGoblin/States/ChaseState.gd" id="2_ym5lp"]
+[ext_resource type="Script" path="res://characters/soldier/RedCapGoblin/States/HabilityState.gd" id="3_c8su3"]
+
+[sub_resource type="Animation" id="Animation_m7pdu"]
+resource_name = "idle_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xwxmx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4bqod"]
+resource_name = "walk_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_j7pju"]
+resource_name = "hurt_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51]
+}
+
+[sub_resource type="Animation" id="Animation_2btv7"]
+resource_name = "attack_animation"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.3, 0.433333, 0.6, 0.733333, 0.9, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27, 28, 29, 30, 31]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.333333, 0.766667),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"target_do_damage"
+}, {
+"args": [],
+"method": &"target_do_damage"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_4jde8"]
+resource_name = "death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59, 60, 61]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.966667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_48rxb"]
+resource_name = "hability_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35, 36, 37, 41, 42, 43, 44]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"teleport_to_target"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1y83x"]
+_data = {
+"RESET": SubResource("Animation_xwxmx"),
+"attack_animation": SubResource("Animation_2btv7"),
+"death_animation": SubResource("Animation_4jde8"),
+"hability_animation": SubResource("Animation_48rxb"),
+"hurt_animation": SubResource("Animation_j7pju"),
+"idle_animation": SubResource("Animation_m7pdu"),
+"walk_animation": SubResource("Animation_4bqod")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_op2u5"]
+radius = 3.0
+
+[node name="RedCapGoblin" instance=ExtResource("1_qn4fh")]
+distance_maximun = 72
+
+[node name="AbstractStateMachine" parent="." index="0"]
+STATES_LIST = Array[NodePath]([NodePath("Idle"), NodePath("Attack"), NodePath("Hurt"), NodePath("Death"), NodePath("Hability"), NodePath("Chase")])
+
+[node name="Chase" parent="AbstractStateMachine" index="0"]
+script = ExtResource("2_ym5lp")
+
+[node name="Hability" type="Node" parent="AbstractStateMachine" index="5"]
+script = ExtResource("3_c8su3")
+state_id = "hability"
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_fpxhf")
+vframes = 8
+frame = 0
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_1y83x")
+}
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_op2u5")
+
+[node name="HealthBar" parent="." index="6"]
+offset_top = -10.0
+offset_bottom = -8.0

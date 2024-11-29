@@ -1,0 +1,173 @@
+[gd_scene load_steps=11 format=3 uid="uid://drhrtq5v7uq1m"]
+
+[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Melee.tscn" id="1_hkh76"]
+[ext_resource type="Texture2D" uid="uid://cmcvrfjcq2sn1" path="res://assets/sprites/guard_rapier.png" id="2_s3xp6"]
+
+[sub_resource type="Animation" id="Animation_w4cn1"]
+resource_name = "idle_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_svu7s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_g2kg8"]
+resource_name = "walk_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.5, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_tj3e1"]
+resource_name = "attack_animation"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.466667, 0.7, 1.03333, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"target_do_damage"
+}, {
+"args": [],
+"method": &"target_do_damage"
+}, {
+"args": [],
+"method": &"target_do_damage"
+}, {
+"args": [],
+"method": &"target_do_damage"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_d8fmn"]
+resource_name = "hurt_animation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_xo2xt"]
+resource_name = "death_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.433333, 0.6, 0.733333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [70, 71, 72, 73, 74, 75, 76]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.03333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr8vd"]
+_data = {
+"RESET": SubResource("Animation_svu7s"),
+"attack_animation": SubResource("Animation_tj3e1"),
+"death_animation": SubResource("Animation_xo2xt"),
+"hurt_animation": SubResource("Animation_d8fmn"),
+"idle_animation": SubResource("Animation_w4cn1"),
+"walk_animation": SubResource("Animation_g2kg8")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcebn"]
+radius = 3.0
+
+[node name="GuardRapier" instance=ExtResource("1_hkh76")]
+damage = 2
+speed = 85
+max_hp = 18
+hp = 18
+
+[node name="AttackCoolDown" parent="AbstractStateMachine/Attack" index="0"]
+wait_time = 3.0
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -4)
+texture = ExtResource("2_s3xp6")
+hframes = 14
+frame = 0
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_fr8vd")
+}
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource("CircleShape2D_tcebn")
+
+[node name="HealthBar" parent="." index="6"]
+offset_top = -9.0
+offset_bottom = -7.0

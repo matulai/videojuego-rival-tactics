@@ -20,6 +20,7 @@ func _on_animation_finished(anim_name: String) -> void:
 			character.knockback_direction, 
 			character.knockback_force
 		)
+	
 
 func _on_soldier_character_hurt() -> void:
 	emit_signal("finished", "hurt")

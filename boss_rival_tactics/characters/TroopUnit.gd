@@ -8,12 +8,17 @@ class_name TroopUnit
 @export var knockback_force: int = 300
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var distance_maximun: int
+@export var distance_for_hability: int
 
 var target: PhysicsBody2D = null
 
 func chase() -> void:
 	var vector_to_next_point: Vector2 = navigation_agent.get_next_path_position() - global_position
 	move_direction = vector_to_next_point
+
+func keep_distance() -> void:
+	var vector_to_next_point: Vector2 = navigation_agent.get_next_path_position() - global_position
+	move_direction = -vector_to_next_point
 
 func _get_path_to_enemy() ->void:
 	if is_instance_valid(target):
@@ -47,3 +52,15 @@ func _on_path_timer_timeout() -> void:
 		_get_path_to_enemy()
 	else:
 		target = get_closest_node(GLOBAL.get_unit_enemies(isTeamOne))
+
+func target_do_damage() -> void:
+	if is_instance_valid(target):
+		target.take_damage(
+				damage, 
+				knockback_direction, 
+				knockback_force
+			)
+
+func teleport_to_target() -> void:
+	if is_instance_valid(target):
+		global_position = target.global_position + Vector2(-5, -15)
