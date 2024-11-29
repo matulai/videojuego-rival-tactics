@@ -6,7 +6,7 @@ func enter() -> void:
 func update(delta: float) -> void:
 	if is_instance_valid(character.target):
 		if character.target is StaticBody2D:
-			character.set_max_distance_to_target_on(48)
+			character.set_max_distance_to_target_on(50)
 		else:
 			character.set_default_max_distance_to_taget()
 		character.chase()

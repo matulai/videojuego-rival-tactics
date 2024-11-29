@@ -15,4 +15,4 @@ func update(delta: float) -> void:
 
 func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "hurt_animation":
-		emit_signal("finished", "idle")
+		emit_signal("finished", "chase")

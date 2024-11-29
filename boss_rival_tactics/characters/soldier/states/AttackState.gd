@@ -3,7 +3,6 @@ extends AbstractState
 @onready var timer: Timer = $AttackCoolDown
 
 func enter() -> void:
-	print("attack_state")
 	character.move_direction = Vector2.ZERO
 	character.move()
 	character._play_animation("attack_animation")
