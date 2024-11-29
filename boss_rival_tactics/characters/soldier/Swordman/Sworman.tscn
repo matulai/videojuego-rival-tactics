@@ -142,7 +142,7 @@ max_hp = 50
 hp = 50
 
 [node name="AttackCoolDown" parent="AbstractStateMachine/Attack" index="0"]
-wait_time = 0.25
+wait_time = 0.35
 
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_vviv2")

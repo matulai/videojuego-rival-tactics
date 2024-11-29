@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ck7rlj4y2tqee"]
+[gd_scene load_steps=16 format=3 uid="uid://ck7rlj4y2tqee"]
 
 [ext_resource type="PackedScene" uid="uid://6bv8d0kcugq6" path="res://characters/player/Player.tscn" id="1_3gvx5"]
 [ext_resource type="Texture2D" uid="uid://co8m5alw3w46d" path="res://assets/sprites/magician_normal.png" id="2_ghyko"]
 [ext_resource type="Script" path="res://characters/player/players/playerMage.gd" id="2_kgknf"]
 [ext_resource type="PackedScene" uid="uid://deixwyw8nov3a" path="res://habilities/fireball/Fireball.tscn" id="3_mdl6o"]
+[ext_resource type="Script" path="res://characters/player/states/HurtState.gd" id="4_eoxbt"]
 
 [sub_resource type="Animation" id="Animation_ncose"]
 length = 0.001
@@ -207,6 +208,12 @@ damage = 8
 speed = 120
 max_hp = 38
 hp = 38
+
+[node name="AbstractStateMachine" parent="." index="0"]
+STATES_LIST = Array[NodePath]([NodePath("Idle"), NodePath("Walk"), NodePath("Attack"), NodePath("Death"), NodePath("Hability"), NodePath("Hurt")])
+
+[node name="Hurt" parent="AbstractStateMachine" index="3"]
+script = ExtResource("4_eoxbt")
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(0, -9)

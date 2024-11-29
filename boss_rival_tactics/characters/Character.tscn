@@ -19,6 +19,7 @@ script = ExtResource("2_kge8e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="HealthBar" parent="." instance=ExtResource("3_vyoh1")]
+z_index = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 volume_db = -1.5
