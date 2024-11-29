@@ -2563,8 +2563,6 @@ position = Vector2(1169, 334)
 [node name="Sworman3" parent="PlayerTwoArmyNode" instance=ExtResource("3_jbiga")]
 position = Vector2(1082, 558)
 
-[node name="Buildings" type="Node" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
