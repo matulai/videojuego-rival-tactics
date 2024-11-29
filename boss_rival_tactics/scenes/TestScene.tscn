@@ -168,7 +168,7 @@ tile_set = SubResource("TileSet_7aspu")
 [node name="PlayerOneArmyNode" type="Node" parent="."]
 
 [node name="PlayerMage" parent="PlayerOneArmyNode" instance=ExtResource("4_auf8h")]
-position = Vector2(993, 158)
+position = Vector2(1119, 313)
 is_player_one = true
 isTeamOne = true
 

@@ -8,7 +8,8 @@ func _on_options_button_pressed() -> void:
 	$OptionsMenu.visible = true
 
 func _on_credits_pressed() -> void:
-	pass # Replace with function body.
+	$MenuOptions.visible = false
+	$Credits.visible = true
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

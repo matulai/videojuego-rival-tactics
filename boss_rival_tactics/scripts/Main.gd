@@ -103,7 +103,6 @@ func instantiate_reinforcements_from(side: String, cant: int) -> void:
 			unit.position = player_two_reinforcements.position + position_offset
 			GLOBAL.add_unit_to_army_two(unit)
 			player_two_army.add_child(unit)
-	print("reinforcements_intantiated")
 
 func spawn_players() -> void:
 	# Instanciar el jugador uno y establecer su posición
@@ -149,5 +148,4 @@ func _on_castle_castle_destroyed(is_team_one: bool) -> void:
 	get_tree().paused = true
 
 func _on_castle_castle_reinforcement_request(is_team_one: bool) -> void:
-	print("request_recieved", is_team_one)
 	instantiate_reinforcements_from("left" if is_team_one else "right", 5)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://digxcglpsj87c"]
+[gd_scene load_steps=12 format=3 uid="uid://digxcglpsj87c"]
 
 [ext_resource type="Script" path="res://scripts/MainMenuControl.gd" id="1_o6vmx"]
 [ext_resource type="FontVariation" uid="uid://c7vj672owbbn0" path="res://fonts/main_font.tres" id="2_7vj1m"]
 [ext_resource type="PackedScene" uid="uid://cnwl2fo7wydv" path="res://scenes/OptionsMenu.tscn" id="3_3qdcd"]
 [ext_resource type="PackedScene" uid="uid://c70lvth7u7qt5" path="res://scenes/MainMenuBackground.tscn" id="3_c6lau"]
 [ext_resource type="AudioStream" uid="uid://cj0knwr58mqh7" path="res://music_sonds/glorious_morning.mp3" id="4_gxlrg"]
+[ext_resource type="PackedScene" uid="uid://bmfqkra11w5tu" path="res://scenes/Credits.tscn" id="4_uyjnp"]
+[ext_resource type="PackedScene" uid="uid://4qwjb8vp242w" path="res://characters/soldier/Swordman/Sworman.tscn" id="6_00oww"]
+[ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="6_cmxk4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m4hfy"]
 bg_color = Color(0.333333, 0.258824, 0.184314, 1)
@@ -41,7 +44,7 @@ process_mode = 3
 script = ExtResource("1_o6vmx")
 
 [node name="MenuOptions" type="Control" parent="."]
-z_index = 1
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -143,10 +146,13 @@ offset_right = 40.0
 offset_bottom = 16.0
 
 [node name="OptionsMenu" parent="." instance=ExtResource("3_3qdcd")]
-visible = false
+
+[node name="Credits" parent="." instance=ExtResource("4_uyjnp")]
 
 [node name="MainManuBackground" parent="." instance=ExtResource("3_c6lau")]
 process_mode = 1
+unit_scenes_left = Array[PackedScene]([ExtResource("6_cmxk4"), ExtResource("6_00oww")])
+unit_scenes_right = Array[PackedScene]([ExtResource("6_cmxk4"), ExtResource("6_00oww")])
 player_one_scene = null
 player_two_scene = null
 
@@ -156,5 +162,7 @@ autoplay = true
 
 [connection signal="pressed" from="MenuOptions/Buttons/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MenuOptions/Buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MenuOptions/Buttons/CreditsButton" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MenuOptions/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="returnToMainMenu" from="OptionsMenu" to="." method="_on_options_menu_return_to_main_menu"]
+[connection signal="returnToMainMenu" from="Credits" to="." method="_on_options_menu_return_to_main_menu"]

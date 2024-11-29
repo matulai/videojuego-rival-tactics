@@ -1,13 +1,15 @@
-[gd_scene load_steps=17 format=4 uid="uid://bhg541i6s3k1o"]
+[gd_scene load_steps=19 format=4 uid="uid://bhg541i6s3k1o"]
 
 [ext_resource type="Script" path="res://scripts/Main.gd" id="1_5op4d"]
 [ext_resource type="Script" path="res://scripts/Global.gd" id="1_hwmsa"]
+[ext_resource type="PackedScene" uid="uid://4qwjb8vp242w" path="res://characters/soldier/Swordman/Sworman.tscn" id="3_jbiga"]
+[ext_resource type="PackedScene" uid="uid://n2qtv2die2ka" path="res://characters/soldier/RedCapGoblin/RedCapGoblin.tscn" id="4_4rmxj"]
 [ext_resource type="PackedScene" uid="uid://ck7rlj4y2tqee" path="res://characters/player/players/PlayerMage.tscn" id="4_q13tb"]
 [ext_resource type="PackedScene" uid="uid://bs2lywj3j76gw" path="res://characters/archer/Archer.tscn" id="5_7eoaf"]
+[ext_resource type="PackedScene" uid="uid://drhrtq5v7uq1m" path="res://characters/soldier/GuardRapier/GuardRapier.tscn" id="5_088ry"]
 [ext_resource type="Texture2D" uid="uid://dkne2x8q5jypc" path="res://assets/tilesets/BaseSet.png" id="5_h5syy"]
 [ext_resource type="PackedScene" uid="uid://csv5q4rhsel38" path="res://scenes/Castle.tscn" id="7_e83k8"]
 [ext_resource type="PackedScene" uid="uid://ds15wc2owm5mn" path="res://scenes/GameOver.tscn" id="8_vhu54"]
-[ext_resource type="PackedScene" uid="uid://d3dn20yxty3tt" path="res://characters/soldier/Melee.tscn" id="9_wpucm"]
 [ext_resource type="PackedScene" uid="uid://2xni1c5baefn" path="res://scenes/RespawnPlayerBar.tscn" id="10_knj1o"]
 [ext_resource type="AudioStream" uid="uid://cv7fxrty441yi" path="res://music_sonds/Tower_Defence_Battle_Loop.ogg" id="10_qp2ni"]
 [ext_resource type="PackedScene" uid="uid://ddmidwx5w2djs" path="res://scenes/PauseMenu.tscn" id="10_ueccs"]
@@ -2487,8 +2489,8 @@ sources/0 = SubResource("TileSetAtlasSource_c83us")
 
 [node name="Game" type="Node"]
 script = ExtResource("1_5op4d")
-unit_scenes_left = Array[PackedScene]([ExtResource("9_wpucm"), ExtResource("5_7eoaf")])
-unit_scenes_right = Array[PackedScene]([ExtResource("5_7eoaf"), ExtResource("9_wpucm")])
+unit_scenes_left = Array[PackedScene]([ExtResource("3_jbiga"), ExtResource("4_4rmxj"), ExtResource("5_088ry"), ExtResource("5_7eoaf")])
+unit_scenes_right = Array[PackedScene]([ExtResource("5_7eoaf"), ExtResource("3_jbiga"), ExtResource("4_4rmxj"), ExtResource("5_088ry")])
 player_one_scene = ExtResource("4_q13tb")
 player_two_scene = ExtResource("4_q13tb")
 should_spawn_players = true
@@ -2509,7 +2511,7 @@ tile_set = SubResource("TileSet_hmpoe")
 [node name="PlayerOneArmyNode" type="Node" parent="."]
 
 [node name="Castle" parent="PlayerOneArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(200, 360)
+position = Vector2(150, 360)
 isTeamOne = true
 hp = 1000
 
@@ -2521,26 +2523,26 @@ isTeamOne = true
 position = Vector2(47, 160)
 isTeamOne = true
 
-[node name="Soldier" parent="PlayerOneArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(176, 185)
-isTeamOne = true
-
-[node name="Soldier2" parent="PlayerOneArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(181, 284)
-isTeamOne = true
-
 [node name="Archer3" parent="PlayerOneArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(66, 621)
 isTeamOne = true
 
-[node name="Soldier3" parent="PlayerOneArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(173, 508)
+[node name="Sworman" parent="PlayerOneArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(19, 260)
+isTeamOne = true
+
+[node name="Sworman2" parent="PlayerOneArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(53, 485)
+isTeamOne = true
+
+[node name="Sworman3" parent="PlayerOneArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(154, 565)
 isTeamOne = true
 
 [node name="PlayerTwoArmyNode" type="Node" parent="."]
 
 [node name="Castle" parent="PlayerTwoArmyNode" instance=ExtResource("7_e83k8")]
-position = Vector2(1080, 360)
+position = Vector2(1130, 360)
 hp = 1000
 
 [node name="Archer" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
@@ -2552,14 +2554,14 @@ position = Vector2(1174, 222)
 [node name="Archer3" parent="PlayerTwoArmyNode" instance=ExtResource("5_7eoaf")]
 position = Vector2(1184, 515)
 
-[node name="Soldier" parent="PlayerTwoArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(1115, 150)
+[node name="Sworman" parent="PlayerTwoArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(1100, 143)
 
-[node name="Soldier2" parent="PlayerTwoArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(1108, 358)
+[node name="Sworman2" parent="PlayerTwoArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(1169, 334)
 
-[node name="Soldier3" parent="PlayerTwoArmyNode" instance=ExtResource("9_wpucm")]
-position = Vector2(1121, 585)
+[node name="Sworman3" parent="PlayerTwoArmyNode" instance=ExtResource("3_jbiga")]
+position = Vector2(1082, 558)
 
 [node name="Buildings" type="Node" parent="."]
 

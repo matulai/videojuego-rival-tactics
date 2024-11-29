@@ -11,8 +11,6 @@
 collision_layer = 16
 damage = 10
 distance_maximun = 5
-distance_for_hability_min = 0
-distance_for_hability_max = 0
 speed = 60
 max_hp = 25
 hp = 25
@@ -61,6 +59,7 @@ path_max_distance = 128.0
 wait_time = 0.33
 
 [node name="HealthBar" parent="." index="6"]
+z_index = 0
 offset_left = -12.0
 offset_top = -13.0
 offset_right = 12.0
